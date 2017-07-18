@@ -1,9 +1,9 @@
 {
   "name": "quiz-maker-app",
-  "version": "0.0.0",
-  "description": "Small description for quiz-maker-app goes here",
-  "license": "MIT",
-  "author": "",
+  "version": "1.0.0",
+  "description": "My Fall 2017 project",
+  "license": "Nne",
+  "author": "devnigam24@csu.fullerton.edu",
   "directories": {
     "doc": "doc",
     "test": "tests"
