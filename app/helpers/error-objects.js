@@ -1,0 +1,83 @@
+export function getUserNameDomainErrorObject() {
+    return {
+        'label': 'signupusername',
+        'message': 'Email has to be a CSU fullerton Email'
+    };
+}
+
+export function userNameInvalidErrorObject() {
+    return {
+        'label': 'signupusername',
+        'message': 'Email Invalid'
+    };
+}
+
+export function passwordInvalidLengthErrorObject() {
+    return {
+        'label': 'signuppassword',
+        'message': 'Password Length has to be between 4 to 8'
+    };
+}
+
+export function passwordInvalidErrorObject() {
+    return {
+        'label': 'signuppassword',
+        'message': 'Password Invalid'
+    };
+}
+
+export function firstNameInvalidErrorObject() {
+    return {
+        'label': 'fname',
+        'message': 'First Name Invalid'
+    };
+}
+
+export function firstNameInvalidChars() {
+    return {
+        'label': 'fname',
+        'message': 'First Name contains invalid characters'
+    };
+}
+
+export function lastNameInvalidErrorObject() {
+    return {
+        'label': 'lname',
+        'message': 'Last Name Invalid'
+    };
+}
+
+export function lastNameInvalidChars() {
+    return {
+        'label': 'lname',
+        'message': 'Last Name contains invalid characters'
+    };
+}
+
+export function formInvalidErrorObject() {
+    return {
+        'label': 'form',
+        'message': 'Form Inputs either not complete or invalid'
+    };
+}
+
+export function phoneNumberInvalidErrorObject() {
+    return {
+        'label': 'pnumber',
+        'message': 'Phone Number Invalid'
+    };
+}
+
+export function phoneNumberInvalidFormatErrorObject() {
+    return {
+        'label': 'pnumber',
+        'message': 'Phone Number Invalid Format'
+    };
+}
+
+export function idInvalidErrorObject() {
+    return {
+        'label': 'cid',
+        'message': 'CWID Invalid'
+    };
+}

@@ -1,0 +1,32 @@
+<h1>this is sign up Route hbs</h1>
+<ul>
+    {{#each serverSideFormError as |error|}}
+        <li>{{error.message}}</li>
+    {{/each}}
+</ul>
+<form class="signUpForm" action="index.html" method="post">
+    First Name :{{input name="fname" type="text" class="validate"
+  value=fname change=(action 'fnameValidation' fname)}}
+    <br> Last Name :{{input name="lname" type="text" class="validate"
+  value=lname change=(action 'lnameValidation' lname)}}
+    <br> User Name :{{input name="userName" type="email" class="validate"
+  value=userName change=(action 'userNameValidation' userName)}}
+    <br> Password :{{input name="Password" type="password" class="validate"
+  value=Password change=(action 'passwordValidation' Password)}}
+    <br> Phone :{{input name="phone" type="text" class="validate"
+  value=Phone change=(action 'phoneValidation' Phone)}}
+    <br> CWID :{{input name="cwid" type="text" class="validate"
+  value=cwid change=(action 'cwidValidation' cwid)}}
+    <br>
+
+    <button type="button" name="button" {{action "processSIgnUpAction"}}>
+          {{#if serverSideFormError.length 0}}
+              Check
+          {{else}}
+              Join Now
+          {{/if}}
+    </button>
+
+    <button type="button" name="button" {{action "get"}}>gggg</button>
+
+</form>
