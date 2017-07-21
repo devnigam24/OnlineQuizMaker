@@ -3,10 +3,6 @@ import Ember from 'ember';
 export default function() {
     this.namespace = '/api';
 
-    this.get('/allUsersEmail', function(db) {
-        return db.db.allEmailIds;
-    });
-
     this.post('/pushNewUser', function(db, request) {
         const userInserted = db.db.users.insert(JSON.parse(request.requestBody));
         if (!Ember.isEmpty(userInserted)) {
@@ -14,6 +10,22 @@ export default function() {
         } else {
             return null;
         }
+    });
 
+    this.post('/pushNewEmail', function(db, request) {
+        const usernameInserted = db.db.authenticationobjects.insert(JSON.parse(request.requestBody));
+        if (!Ember.isEmpty(usernameInserted)) {
+            return usernameInserted;
+        } else {
+            return null;
+        }
+    });
+
+    this.get('/getAuthenticationObjects', function(db) {
+        console.log(db.db.authenticationobjects);
+    });
+
+    this.get('/getUsers', function(db) {
+        console.log(db.db.users);
     });
 }

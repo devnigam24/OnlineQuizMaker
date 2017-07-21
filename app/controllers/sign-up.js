@@ -123,7 +123,7 @@ export default Ember.Controller.extend({
                     "desc": "Some long description fetched from Database"
                 });
                 this.send('setErrorMessageEmpty');
-                this.get('signUpService').pushObjectInDB(userObject);
+                this.get('signUpService').mockcalltobackend(userObject);
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
