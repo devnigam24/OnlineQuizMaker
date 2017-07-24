@@ -10,25 +10,50 @@ export default Ember.Service.extend({
 
     pushEmailInDB(emilID, password) {
         const objectToInsert = {
-            userName: emilID,
-            password: password
+            'id': emilID,
+            'password': password
         }
         Ember.$.post('api/pushNewEmail', JSON.stringify(objectToInsert)).then((data) => {
             return data;
         });
     },
 
-    checkValidEmailId(emailID) {
-        Ember.$.getJSON('api/getAuthenticationObjects').then(function(data) {
-            return data.includes(emailID) ? true : false;
+    authenticateUser(userObject) {
+        var authenticateUserPromise = new Ember.RSVP.Promise(function(resolve, reject) {
+            Ember.$.getJSON('api/getAuthenticationObjects?username=' + userObject.username).then(function(obj) {
+                if (obj.error === 'not found') {
+                    reject(null);
+                } else {
+                    resolve(obj.password === userObject.password);
+                }
+            });
+        });
+
+        authenticateUserPromise.then((data) => {
+            console.log(data);
+            return data;
         });
     },
 
-    mockcalltobackend(userObject) {
+    mockcalltobackendSignUP(userObject) {
         return Ember.RSVP.hash({
             userInserted: this.pushObjectInDB(userObject),
-            emailInserted: this.pushEmailInDB(userObject.username, userObject.password),
-            isValidEmail: this.checkValidEmailId(userObject.username)
+            emailInserted: this.pushEmailInDB(userObject.username, userObject.password)
+        });
+    },
+
+    callAuthenticateUser(loginObj) {
+        const _this = this;
+        var authenticateUserPromise = new Ember.RSVP.Promise(function(resolve, reject) {
+            _this.authenticateUser(loginObj).then(function(data) {
+                resolve(data);
+                reject(data);
+            });
+        });
+
+        authenticateUserPromise.then((data) => {
+            console.log(data);
+            return data;
         });
     }
 });

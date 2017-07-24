@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
         },
         passwordValidation(password) {
             if (this.isInputValidText(password)) {
-                if (ValidationHelper.isInputOfCorrectLength(password, 4, 8)) {
+                if (ValidationHelper.isInputOfCorrectLength(password, 6, 12)) {
                     this.set('password', password);
                     this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'signuppassword'));
                 } else {
@@ -98,12 +98,12 @@ export default Ember.Controller.extend({
 
         cwidValidation(value) {
             if (ValidationHelper.isInputValidNumber(value)) {
-                    this.set('id', value);
-                    this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'cid'));
-                } else {
-                    this.send('someErrorwithFormInput', ErrorObjects.idInvalidErrorObject());
-                    this.set('id', null);
-                }
+                this.set('id', value);
+                this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'cid'));
+            } else {
+                this.send('someErrorwithFormInput', ErrorObjects.idInvalidErrorObject());
+                this.set('id', null);
+            }
         },
 
         processSIgnUpAction() {
@@ -123,7 +123,13 @@ export default Ember.Controller.extend({
                     "desc": "Some long description fetched from Database"
                 });
                 this.send('setErrorMessageEmpty');
-                this.get('signUpService').mockcalltobackend(userObject);
+                const userPushed = this.get('signUpService').mockcalltobackendSignUP(userObject);
+                if (userPushed.hasOwnProperty(userInserted) && userPushed.hasOwnProperty(emailInserted)) {
+                    this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'servererror'));
+                    this.transitionToRoute('dashboard');
+                } else {
+                    this.send('someErrorwithFormInput', ErrorObjects.internalServerErrorObject());
+                }
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
@@ -141,9 +147,6 @@ export default Ember.Controller.extend({
                 this.set('serverSideFormError', errorArray);
                 this.notifyPropertyChange('serverSideFormError');
             }
-        },
-        get(){
-          Ember.$.getJSON('api/allUsersEmail');
         }
     }
 });

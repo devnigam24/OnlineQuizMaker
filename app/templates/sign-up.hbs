@@ -4,7 +4,7 @@
         <li>{{error.message}}</li>
     {{/each}}
 </ul>
-<form class="signUpForm" action="index.html" method="post">
+<form class="signUpForm" method="post">
     First Name :{{input name="fname" type="text" class="validate"
   value=fname change=(action 'fnameValidation' fname)}}
     <br> Last Name :{{input name="lname" type="text" class="validate"

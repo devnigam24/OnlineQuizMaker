@@ -21,8 +21,8 @@ export default function() {
         }
     });
 
-    this.get('/getAuthenticationObjects', function(db) {
-        console.log(db.db.authenticationobjects);
+    this.get('/getAuthenticationObjects', function(db, request) {
+        return db.db.authenticationobjects.find(request.queryParams.username);
     });
 
     this.get('/getUsers', function(db) {

@@ -15,7 +15,7 @@ export function userNameInvalidErrorObject() {
 export function passwordInvalidLengthErrorObject() {
     return {
         'label': 'signuppassword',
-        'message': 'Password Length has to be between 4 to 8'
+        'message': 'Password Length has to be between 6 to 12'
     };
 }
 
@@ -79,5 +79,19 @@ export function idInvalidErrorObject() {
     return {
         'label': 'cid',
         'message': 'CWID Invalid'
+    };
+}
+
+export function credententialsMismatchErrorObject() {
+    return {
+        'label': 'credentialInvalid',
+        'message': 'The Username and Password does not match'
+    };
+}
+
+export function internalServerErrorObject() {
+    return {
+        'label': 'servererror',
+        'message': '500 Internal Server Error'
     };
 }

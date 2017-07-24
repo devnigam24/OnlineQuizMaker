@@ -1,0 +1,22 @@
+<h1>this is Log in Route hbs</h1>
+<ul>
+    {{#each serverSideFormError as |error|}}
+        <li>{{error.message}}</li>
+    {{/each}}
+</ul>
+<form class="logInForm" method="post">
+    User Name :{{input name="userName" type="email" class="validate"
+  value=userName change=(action 'userNameValidation' userName)}}
+    <br> Password :{{input name="Password" type="password" class="validate"
+  value=Password change=(action 'passwordValidation' Password)}}
+    <br>
+
+    <button type="button" name="button" {{action "processLoginAction"}}>
+          {{#if serverSideFormError.length 0}}
+              Check
+          {{else}}
+              Join Now
+          {{/if}}
+    </button>
+
+</form>
