@@ -9,6 +9,9 @@ export default Ember.Controller.extend({
     password: null,
     isInputValidText: ValidationHelper.isInputValidText,
     signUpService: Ember.inject.service('login-signup'),
+    noErrors: Ember.computed.readOnly('serverSideFormError', function() {
+        return this.get('serverSideFormError').length === 0 ? true : false;
+    }),
     actions: {
         userNameValidation(userName) {
             if (this.isInputValidText(userName)) {
@@ -39,31 +42,26 @@ export default Ember.Controller.extend({
             }
         },
         processLoginAction() {
-            if (this.serverSideFormError.length === 0 &&
-                this.isInputValidText(this.username) &&
-                this.isInputValidText(this.password)) {
+            if (this.noErrors && this.isInputValidText(this.username) && this.isInputValidText(this.password)) {
                 const userObject = Ember.Object.create({
                     'username': this.get('username'),
                     'password': this.get('password')
                 });
-                this.send('setErrorMessageEmpty');
-                this.get('signUpService').callAuthenticateUser(userObject);
-                console.log(isValidUserPromise);
-                // if (isValidUserPromise) {
-                //     this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
-                //     this.transitionToRoute('dashboard');
-                // } else {
-                //     this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
-                // }
+                this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'form'));
+                const promise = this.get('signUpService').callAuthenticateUser(userObject);
+                promise.then((data) => {
+                    if (data === 'LOGIN_VALID') {
+                        this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
+                        this.transitionToRoute('dashboard');
+                    } else if (data === 'USERNAME_NOT_EXISTS') {
+                        this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
+                    } else {
+                        this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
+                    }
+                })
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
-        },
-        setErrorMessageEmpty() {
-            this.set('serverSideFormError', Ember.A([]));
-        },
-        isFormInputsValid() {
-            return Ember.isEmpty(this.get('serverSideFormError'));
         },
         someErrorwithFormInput(errorObject) {
             let errorArray = this.get('serverSideFormError');

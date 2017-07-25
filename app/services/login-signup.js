@@ -19,20 +19,7 @@ export default Ember.Service.extend({
     },
 
     authenticateUser(userObject) {
-        var authenticateUserPromise = new Ember.RSVP.Promise(function(resolve, reject) {
-            Ember.$.getJSON('api/getAuthenticationObjects?username=' + userObject.username).then(function(obj) {
-                if (obj.error === 'not found') {
-                    reject(null);
-                } else {
-                    resolve(obj.password === userObject.password);
-                }
-            });
-        });
 
-        authenticateUserPromise.then((data) => {
-            console.log(data);
-            return data;
-        });
     },
 
     mockcalltobackendSignUP(userObject) {
@@ -42,18 +29,15 @@ export default Ember.Service.extend({
         });
     },
 
-    callAuthenticateUser(loginObj) {
-        const _this = this;
-        var authenticateUserPromise = new Ember.RSVP.Promise(function(resolve, reject) {
-            _this.authenticateUser(loginObj).then(function(data) {
-                resolve(data);
-                reject(data);
-            });
-        });
-
-        authenticateUserPromise.then((data) => {
-            console.log(data);
-            return data;
+    callAuthenticateUser(userObject) {
+        return Ember.$.getJSON('api/getAuthenticationObjects?username=' + userObject.username).then(function(obj) {
+            if (obj.error === 'not found') {
+                return "USERNAME_NOT_EXISTS";
+            } else if (obj.password === userObject.password) {
+                return "LOGIN_VALID";;
+            } else {
+                return "LOGIN_INVALID";
+            }
         });
     }
 });

@@ -89,6 +89,13 @@ export function credententialsMismatchErrorObject() {
     };
 }
 
+export function usernameNotExists() {
+    return {
+        'label': 'credentialInvalid',
+        'message': 'Username does not exists try another email id'
+    };
+}
+
 export function internalServerErrorObject() {
     return {
         'label': 'servererror',

@@ -13,6 +13,9 @@ export default Ember.Controller.extend({
     id: null,
     isInputValidText: ValidationHelper.isInputValidText,
     signUpService: Ember.inject.service('login-signup'),
+    noErrors: Ember.computed.readOnly('serverSideFormError', function() {
+        return this.get('serverSideFormError').length === 0 ? true : false;
+    }),
     serverSideFormErrorObserver: Ember.observer('serverSideFormError', function() {
         if (this.isInputValidText(this.get('username')) &&
             this.isInputValidText(this.get('password')) &&
@@ -107,8 +110,9 @@ export default Ember.Controller.extend({
         },
 
         processSIgnUpAction() {
-            if (this.serverSideFormError.length === 0 && this.isInputValidText(this.username) &&
-                this.isInputValidText(this.firstname) && this.isInputValidText(this.lastname) && this.isInputValidText(this.password)) {
+            if (this.noErrors && this.isInputValidText(this.username) &&
+                this.isInputValidText(this.firstname) && this.isInputValidText(this.lastname) &&
+                this.isInputValidText(this.password)) {
                 const userObject = Ember.Object.create({
                     'username': this.get('username'),
                     'password': this.get('password'),
@@ -122,23 +126,17 @@ export default Ember.Controller.extend({
                     "country": "Peru",
                     "desc": "Some long description fetched from Database"
                 });
-                this.send('setErrorMessageEmpty');
                 const userPushed = this.get('signUpService').mockcalltobackendSignUP(userObject);
-                if (userPushed.hasOwnProperty(userInserted) && userPushed.hasOwnProperty(emailInserted)) {
-                    this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'servererror'));
-                    this.transitionToRoute('dashboard');
-                } else {
-                    this.send('someErrorwithFormInput', ErrorObjects.internalServerErrorObject());
-                }
+                console.log(userPushed);
+                // if (userPushed.hasOwnProperty(userInserted) && userPushed.hasOwnProperty(emailInserted)) {
+                //     this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'servererror'));
+                //     this.transitionToRoute('dashboard');
+                // } else {
+                //     this.send('someErrorwithFormInput', ErrorObjects.internalServerErrorObject());
+                // }
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
-        },
-        setErrorMessageEmpty() {
-            this.set('serverSideFormError', Ember.A([]));
-        },
-        isFormInputsValid() {
-            return Ember.isEmpty(this.get('serverSideFormError'));
         },
         someErrorwithFormInput(errorObject) {
             let errorArray = this.get('serverSideFormError');
