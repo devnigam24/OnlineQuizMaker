@@ -126,14 +126,7 @@ export default Ember.Controller.extend({
                     "country": "Peru",
                     "desc": "Some long description fetched from Database"
                 });
-                const userPushed = this.get('signUpService').mockcalltobackendSignUP(userObject);
-                console.log(userPushed);
-                // if (userPushed.hasOwnProperty(userInserted) && userPushed.hasOwnProperty(emailInserted)) {
-                //     this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'servererror'));
-                //     this.transitionToRoute('dashboard');
-                // } else {
-                //     this.send('someErrorwithFormInput', ErrorObjects.internalServerErrorObject());
-                // }
+                this.get('signUpService').storeUserRegistration(userObject);
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     mouseLeave: function() {
-        console.log('mouseLeft');
+        Ember.Logger.log('mouseLeft');
     },
 
     obj1 : undefined,
@@ -14,8 +14,8 @@ export default Ember.Component.extend({
 
     init() {
         this._super(...arguments);
-        console.log(this.micMuteButtonFeatureFlag);
-        console.log(this.get('micMuteButtonFeatureFlag'));
+        Ember.Logger.log(this.micMuteButtonFeatureFlag);
+        Ember.Logger.log(this.get('micMuteButtonFeatureFlag'));
     }
 
 });

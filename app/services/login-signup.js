@@ -8,25 +8,22 @@ export default Ember.Service.extend({
         });
     },
 
-    pushEmailInDB(emilID, password) {
-        const objectToInsert = {
-            'id': emilID,
-            'password': password
-        }
+    pushEmailInDB(objectToInsert) {
         Ember.$.post('api/pushNewEmail', JSON.stringify(objectToInsert)).then((data) => {
             return data;
         });
     },
 
-    authenticateUser(userObject) {
-
-    },
-
-    mockcalltobackendSignUP(userObject) {
-        return Ember.RSVP.hash({
-            userInserted: this.pushObjectInDB(userObject),
-            emailInserted: this.pushEmailInDB(userObject.username, userObject.password)
-        });
+    storeUserRegistration(userObject) {
+        const objectToInsert = {
+            'id': userObject.username,
+            'password': userObject.password
+        }
+        const returnObj = {
+            'userPushed': this.pushObjectInDB(userObject),
+            'emailPushed': this.pushEmailInDB(objectToInsert)
+        }
+        return returnObj;
     },
 
     callAuthenticateUser(userObject) {
@@ -34,7 +31,7 @@ export default Ember.Service.extend({
             if (obj.error === 'not found') {
                 return "USERNAME_NOT_EXISTS";
             } else if (obj.password === userObject.password) {
-                return "LOGIN_VALID";;
+                return "LOGIN_VALID";
             } else {
                 return "LOGIN_INVALID";
             }

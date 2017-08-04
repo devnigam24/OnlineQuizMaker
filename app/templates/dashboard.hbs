@@ -1,1 +1,15 @@
-<h1>Dasboard</h1>
+<h1>Dasboard</h1> {{sessionData.[0]}} {{model}}
+
+<ul>
+    {{#each-in sessionData as |category products|}}
+        <li>{{category}}
+            <ol>
+                {{products}}
+            </ol>
+        </li>
+    {{/each-in}}
+</ul>
+
+
+
+<button type="button" name="button" {{action "logOut"}}>Log Out</button>

@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
     password: null,
     isInputValidText: ValidationHelper.isInputValidText,
     signUpService: Ember.inject.service('login-signup'),
+    sessionService: Ember.inject.service('session'),
     noErrors: Ember.computed.readOnly('serverSideFormError', function() {
         return this.get('serverSideFormError').length === 0 ? true : false;
     }),
@@ -52,6 +53,11 @@ export default Ember.Controller.extend({
                 promise.then((data) => {
                     if (data === 'LOGIN_VALID') {
                         this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
+                        const userSessionObj = Ember.Object.create({
+                            'username': userObject.username,
+                            'id': userObject.username
+                        });
+                        this.get('sessionService').createSession(userSessionObj);
                         this.transitionToRoute('dashboard');
                     } else if (data === 'USERNAME_NOT_EXISTS') {
                         this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());

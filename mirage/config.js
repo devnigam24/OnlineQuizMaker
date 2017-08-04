@@ -25,7 +25,32 @@ export default function() {
         return db.db.authenticationobjects.find(request.queryParams.username);
     });
 
-    this.get('/getUsers', function(db) {
-        console.log(db.db.users);
+    this.get('/sessionData', function(db) {
+        return db.db.sessions;
+    });
+
+    this.get('/sessionData', function(db) {
+        return db.db.sessions;
+    });
+
+    this.post('/deleteSessionData', function(db, request) {
+        const id = request.queryParams.id;
+        return db.db.sessions.remove(id);
+    });
+
+
+
+    this.get('/userById', (db, request) => {
+        const id = request.queryParams.id;
+        return db.db.users.find(id);
+    });
+
+    this.post('/createSession', function(db, request) {
+        const userSessionInserted = db.db.sessions.insert(JSON.parse(request.requestBody));
+        if (!Ember.isEmpty(userSessionInserted)) {
+            return userSessionInserted;
+        } else {
+            return null;
+        }
     });
 }

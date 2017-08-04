@@ -24,7 +24,7 @@ export function isPhoneNumberFormatValid(inputText) {
     // return true;
 }
 
-export function isEmailDomainValid(inputEmail) {
+export function isEmailDomainValid(/*inputEmail*/) {
     // return /.+@csu.fullerton\.edu$/.test(inputEmail);
     return true;
 }
