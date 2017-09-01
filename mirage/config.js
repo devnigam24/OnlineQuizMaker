@@ -29,16 +29,14 @@ export default function() {
         return db.db.sessions;
     });
 
-    this.get('/sessionData', function(db) {
-        return db.db.sessions;
+    this.get('/usersAll', function(db) {
+        return db.db.users;
     });
 
     this.post('/deleteSessionData', function(db, request) {
         const id = request.queryParams.id;
         return db.db.sessions.remove(id);
     });
-
-
 
     this.get('/userById', (db, request) => {
         const id = request.queryParams.id;

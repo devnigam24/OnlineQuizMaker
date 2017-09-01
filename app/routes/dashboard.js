@@ -7,11 +7,6 @@ export default Ember.Route.extend({
                 return Ember.$.getJSON('api/userById?id=' + data[0].username).then((userData) => {
                     this.controller.set('sessionData', userData);
                 });
-            } else {
-              const _this = this;
-              Ember.run.later(() => {
-                _this.transitionToRoute('log-in');
-              }, 100);
             }
         });
     }
