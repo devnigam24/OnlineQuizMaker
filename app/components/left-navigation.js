@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     tagName: 'ul',
-    classNames: ['side-nav', 'fixed', ],
+    classNames: ['side-nav', 'fixed'],
     elementId: 'nav-mobile',
     didInsertElement() {
-        Ember.$('.button-collapse').sideNav({
+        $('.button-collapse').sideNav({
             menuWidth: 300, // Default is 300
             edge: 'left', // Choose the horizontal origin
             closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor

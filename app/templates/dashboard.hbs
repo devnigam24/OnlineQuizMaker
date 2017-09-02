@@ -1,4 +1,4 @@
-<h1>Dasboard</h1> {{sessionData.[0]}} {{model}}
+<h1>Dasboard</h1>
 
 <ul>
     {{#each-in sessionData as |category products|}}
@@ -9,7 +9,5 @@
         </li>
     {{/each-in}}
 </ul>
-
-{{left-navigation}}
 
 <button type="button" name="button" {{action "logOut"}}>Log Out</button>

@@ -10,17 +10,46 @@ main {
     flex: 1 0 auto;
 }
 
-.top4pt5 {
-    top: 4.5em;
+.page-footer {
+    background-color: #fff;
 }
 
-.navPC {
-    position: relative;
-    overflow: hidden;
-    margin-left: 20.2em;
-    width: 78.6%;
+.main-wrapper {
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
-.page-footer{
-  background-color: #fff;
+.pofile-cover {
+    height: 20em;
+}
+
+.card-profile-image {
+    width: 110px;
+    position: absolute;
+    top: 190px;
+    z-index: 1;
+    left: 40px;
+    cursor: pointer;
+    margin: 0;
+}
+
+
+/*for medium and down only*/
+
+@media only screen and (max-width: 992px) {}
+
+
+/*for large only*/
+
+@media only screen and (min-width: 992px) {
+    .profile-card {
+        margin-left: 7em;
+        width: 109%;
+    }
+    .navPC {
+        position: relative;
+        overflow: hidden;
+        margin-left: 20.2em;
+        width: 78.6%;
+    }
 }
