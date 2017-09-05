@@ -1,15 +1,7 @@
-{{outlet}}
-{{#if isSIgnedIn}}
-    {{left-navigation}}
-
-    <body>
-        {{body-header}} {{main-wrapper}} {{body-footer}}
-    </body>
-{{else}}
-    {{#if showJoinButton}}
-        {{#link-to 'sign-up' tagName='button' }}Sign Up{{/link-to}}
-    {{/if}}
-    {{#if showLoginButton}}
-        {{#link-to 'log-in' tagName='button' }}Log In{{/link-to}}
-    {{/if}}
-{{/if}}
+<body>
+    {{body-header
+      showLoginButton=this.showLoginButton
+      showJoinButton=this.showJoinButton
+      isSIgnedIn=this.isSIgnedIn
+    }} {{main-wrapper}} {{body-footer}}
+</body>

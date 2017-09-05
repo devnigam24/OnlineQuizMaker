@@ -1,8 +1,14 @@
-<nav class="navPC" role="navigation">
+<nav role="navigation">
     <div class="nav-wrapper container">
         <a href="#" data-activates="nav-mobile" class="hide-on-large-only button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right">
             <li><a href="#">Nav</a></li>
         </ul>
+        {{#if showJoinButton}}
+            {{#link-to 'sign-up' tagName='a' class='waves-effect waves-light btn' }}Sign Up{{/link-to}}
+        {{/if}}
+        {{#if showLoginButton}}
+            {{#link-to 'log-in' tagName='a' class='waves-effect waves-light btn' }}Log In{{/link-to}}
+        {{/if}}
     </div>
 </nav>

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    didTransition: function() {
+    afterModel: function() {
         this._super();
-    },
+    }
 });

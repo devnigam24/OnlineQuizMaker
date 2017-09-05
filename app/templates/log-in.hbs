@@ -1,4 +1,4 @@
-<h1>this is Log in Route hbs</h1>
+<h1>Log In to Continue</h1>
 <ul>
     {{#each serverSideFormError as |error|}}
         <li>{{error.message}}</li>
@@ -11,12 +11,13 @@
   value=Password change=(action 'passwordValidation' Password)}}
     <br>
 
-    <button type="button" name="button" {{action "processLoginAction"}}>
+    <button type="button" name="button" class="btn waves-effect waves-light" {{action "processLoginAction"}}>
           {{#if serverSideFormError.length 0}}
               Check
           {{else}}
               Join Now
           {{/if}}
+           <i class="material-icons right">send</i>
     </button>
 
 </form>
