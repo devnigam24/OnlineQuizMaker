@@ -1,5 +1,5 @@
 <h1>Dasboard</h1>
-{{profile-info}}
+{{profile-info sessionData=this.sessionData}}
 <ul>
     {{#each-in sessionData as |category products|}}
         <li>{{category}}
@@ -9,5 +9,3 @@
         </li>
     {{/each-in}}
 </ul>
-
-<button type="button" name="button" {{action "logOut"}}>Log Out</button>

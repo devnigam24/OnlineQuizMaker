@@ -1,7 +1,8 @@
 <body>
+    {{left-navigation isSIgnedIn=this.isSIgnedIn}}
     {{body-header
       showLoginButton=this.showLoginButton
       showJoinButton=this.showJoinButton
       isSIgnedIn=this.isSIgnedIn
-    }} {{main-wrapper}} {{body-footer}}
+    }} {{main-wrapper}} {{body-footer isSIgnedIn=this.isSIgnedIn}}
 </body>

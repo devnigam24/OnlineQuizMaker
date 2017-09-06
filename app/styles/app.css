@@ -42,14 +42,22 @@ main {
 /*for large only*/
 
 @media only screen and (min-width: 992px) {
+
     .profile-card {
-        margin-left: 7em;
         width: 109%;
     }
+
     .navPC {
         position: relative;
         overflow: hidden;
         margin-left: 20.2em;
-        width: 78.6%;
+    }
+
+    .navPC nav {
+        width: 78%;
+    }
+
+    .quiz-container {
+        margin-left: 21em;
     }
 }

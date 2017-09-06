@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: 'ul',
     classNames: ['side-nav', 'fixed'],
+    classNameBindings: ['isSIgnedIn:show:hide'],
     elementId: 'nav-mobile',
     didInsertElement() {
         $('.button-collapse').sideNav({

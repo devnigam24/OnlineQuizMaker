@@ -2,16 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     sessionData: {},
+    applicationController: Ember.inject.controller('application'),
     actions: {
-        logOut() {
-            const id = this.get('sessionData.id');
-            Ember.$.post('api/deleteSessionData?id=' + id).then((data) => {
-                if (JSON.stringify(data) === "{}") {
-                    this.transitionToRoute('log-in');
-                }
-            });
-        },
-
         goBackToHomePage() {
           this.transitionToRoute('application');
         }
