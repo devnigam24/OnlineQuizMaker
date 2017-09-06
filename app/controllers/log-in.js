@@ -5,6 +5,7 @@ import Utils from '../helpers/utils';
 
 export default Ember.Controller.extend({
     serverSideFormError: Ember.A([]),
+    appCtrl: Ember.inject.controller('application'),
     username: null,
     password: null,
     isInputValidText: ValidationHelper.isInputValidText,
@@ -58,6 +59,7 @@ export default Ember.Controller.extend({
                             'id': userObject.username
                         });
                         this.get('sessionService').createSession(userSessionObj);
+                        this.get('appCtrl').set('isSIgnedIn', true);
                         this.transitionToRoute('dashboard');
                     } else if (data === 'USERNAME_NOT_EXISTS') {
                         this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());

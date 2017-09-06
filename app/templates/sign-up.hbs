@@ -19,12 +19,13 @@
   value=cwid change=(action 'cwidValidation' cwid)}}
     <br>
 
-    <button type="button" name="button" {{action "processSIgnUpAction"}}>
+    <button type="button" name="button" class="btn waves-effect waves-light" {{action "processSIgnUpAction"}}>
           {{#if serverSideFormError.length 0}}
               Check
           {{else}}
               Join Now
           {{/if}}
+          <i class="material-icons right">send</i>
     </button>
 
 </form>

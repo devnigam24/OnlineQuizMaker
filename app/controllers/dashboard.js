@@ -10,6 +10,10 @@ export default Ember.Controller.extend({
                     this.transitionToRoute('log-in');
                 }
             });
+        },
+
+        goBackToHomePage() {
+          this.transitionToRoute('application');
         }
     }
 });
