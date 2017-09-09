@@ -43,15 +43,6 @@ export default function() {
         return db.db.users.find(id);
     });
 
-    this.post('/createSession', function(db, request) {
-        const userSessionInserted = db.db.sessions.insert(JSON.parse(request.requestBody));
-        if (!Ember.isEmpty(userSessionInserted)) {
-            return userSessionInserted;
-        } else {
-            return null;
-        }
-    });
-
     this.get('/mockData', (db) => {
         return db.db.mocks;
     });

@@ -1,18 +1,23 @@
 import Ember from 'ember';
+import Utils from '../helpers/utils';
 
 export default Ember.Route.extend({
+    sessionService: Ember.inject.service('session'),
+    userData: Ember.computed('sessionService', function() {
+        return this.get('sessionService').getUserDataFromSession();
+    }),
     model() {
-        Ember.$.getJSON('api/sessionData').then((data) => {
-            if (data.length) {
-                Ember.$.getJSON('api/userById?id=' + data[0].username).then((userData) => {
-                    this.controllerFor('application').set('isSIgnedIn', true);
-                    this.controllerFor('application').set('sessionData', userData);
-                    this.controller.set('sessionData', userData);
-                });
-            } else {
-                this.controller.send('goBackToHomePage')
-            }
-        });
+        const userData = this.get('userData');
+        console.log(userData);
+        if (Utils.isValidObject(userData)) {
+            Ember.$.getJSON('api/userById?id=' + userData.username).then((userData) => {
+                this.controllerFor('application').set('isSIgnedIn', true);
+                this.controllerFor('application').set('sessionData', userData);
+                this.controller.set('sessionData', userData);
+            });
+        } else {
+            this.controller.send('goBackToHomePage');
+        }
     },
 
     afterModel: function() {

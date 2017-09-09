@@ -2,8 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
     createSession(userID) {
-        Ember.$.post('api/createSession', JSON.stringify(userID)).then((data) => {
-            return data;
-        });
+        window.sessionStorage.setItem('userSessionData', JSON.stringify(userID));
+    },
+
+    getUserDataFromSession() {
+        return JSON.parse(window.sessionStorage.getItem('userSessionData'));
+    },
+
+    clearSession() {
+        window.sessionStorage.clear();
     }
 });
