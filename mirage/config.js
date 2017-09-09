@@ -51,4 +51,8 @@ export default function() {
             return null;
         }
     });
+
+    this.get('/mockData', (db) => {
+        return db.db.mocks;
+    });
 }
