@@ -2,7 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
     createSession(userID) {
-        window.sessionStorage.setItem('userSessionData', JSON.stringify(userID));
+        Ember.$.getJSON('api/userById?id=' + userID.username).then((userData) => {
+            window.sessionStorage.setItem('userSessionData', JSON.stringify(userData));
+        });
     },
 
     getUserDataFromSession() {

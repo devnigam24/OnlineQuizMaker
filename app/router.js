@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('sign-up');
   this.route('log-in');
   this.route('dashboard');
+  this.route('create-quiz');
 });
 
 export default Router;

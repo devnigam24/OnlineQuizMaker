@@ -60,7 +60,6 @@ export default Ember.Controller.extend({
                         });
                         this.get('sessionService').createSession(userSessionObj);
                         this.get('appCtrl').set('isSIgnedIn', true);
-                        this.transitionToRoute('dashboard');
                     } else if (data === 'USERNAME_NOT_EXISTS') {
                         this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
                     } else {

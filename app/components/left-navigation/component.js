@@ -6,6 +6,7 @@ export default Ember.Component.extend({
     classNameBindings: ['isSIgnedIn:show:hide'],
     isSIgnedIn: false,
     elementId: 'nav-mobile',
+    userInsession: null,
     didInsertElement() {
         $('.button-collapse').sideNav({
             menuWidth: 300, // Default is 300

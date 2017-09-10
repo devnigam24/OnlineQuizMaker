@@ -4,11 +4,13 @@
             <img class="background-image" src="assets/images/office.jpg">
         </div>
         <a><img class="circle" src="assets/images/dev.png"></a>
-        <a><span class="white-text name">{{sessionData.firstName}} {{sessionData.lastName}} </span></a>
-        <a><span class="white-text email">Strudent</span></a>
+        <a><span class="white-text name">{{userInsession.firstName}} {{userInsession.lastName}} </span></a>
+        <a><span class="white-text email">Student</span></a>
     </div>
 </li>
-<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+<li>
+    {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">add</i>Create Quiz{{/link-to}}
+</li>
 <li><a href="#!">Second Link</a></li>
 <li>
     <div class="divider"></div>

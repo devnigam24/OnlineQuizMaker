@@ -137,6 +137,7 @@ export default Ember.Controller.extend({
                 errorArray.pushObject(errorObject);
                 this.set('serverSideFormError', errorArray);
                 this.notifyPropertyChange('serverSideFormError');
+                Materialize.toast(errorObject.message, 4000);
             }
         }
     }

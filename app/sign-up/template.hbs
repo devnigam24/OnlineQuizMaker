@@ -1,31 +1,53 @@
 <h1>It's free and always will be</h1>
-<ul>
-    {{#each serverSideFormError as |error|}}
-        <li>{{error.message}}</li>
-    {{/each}}
-</ul>
-<form class="signUpForm" method="post">
-    First Name :{{input name="fname" type="text" class="validate"
-  value=fname change=(action 'fnameValidation' fname)}}
-    <br> Last Name :{{input name="lname" type="text" class="validate"
-  value=lname change=(action 'lnameValidation' lname)}}
-    <br> User Name :{{input name="userName" type="email" class="validate"
-  value=userName change=(action 'userNameValidation' userName)}}
-    <br> Password :{{input name="Password" type="password" class="validate"
-  value=Password change=(action 'passwordValidation' Password)}}
-    <br> Phone :{{input name="phone" type="text" class="validate"
-  value=Phone change=(action 'phoneValidation' Phone)}}
-    <br> CWID :{{input name="cwid" type="text" class="validate"
-  value=cwid change=(action 'cwidValidation' cwid)}}
-    <br>
+<div class="row">
+    <form class="signUpForm" method="post">
+        <div class="row">
+            <div class="input-field col s6">
+                <label for="first_name">First Name :</label> {{input name="fname" type="text" class="validate"
+            id="first_name" value=fname change=(action 'fnameValidation' fname)}}
+            </div>
+            <div class="input-field col s6">
+                <label for="last_name">Last Name :</label> {{input name="lname" type="text" class="validate"
+            id="last_name" value=lname change=(action 'lnameValidation' lname)}}
+            </div>
+        </div>
 
-    <button type="button" name="button" class="btn waves-effect waves-light" {{action "processSIgnUpAction"}}>
-          {{#if serverSideFormError.length 0}}
-              Check
-          {{else}}
-              Join Now
-          {{/if}}
-          <i class="material-icons right">send</i>
-    </button>
+        <div class="row">
+            <div class="input-field col s6">
+                <label for="user_name">User Name :</label> {{input name="userName" type="email" class="validate"
+                  id="user_name" value=userName change=(action 'userNameValidation' userName)}}
+            </div>
+            <div class="input-field col s6">
+                <label for="pass_label">Password :</label> {{input name="Password" type="password" class="validate"
+                id="pass_label" value=Password change=(action 'passwordValidation' Password)}}
+            </div>
+        </div>
 
-</form>
+        <div class="row">
+            <div class="input-field col s6">
+                <label for="phone_no">Phone Number :</label> {{input name="phone" type="text" class="validate"
+                  id="phone_no" value=Phone change=(action 'phoneValidation' Phone)}}
+            </div>
+            <div class="input-field col s6">
+                <label for="cwid">CWID :</label> {{input name="cwid" type="text" class="validate"
+                  id="cwid" value=cwid change=(action 'cwidValidation' cwid)}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s4"></div>
+            <div class="col s4">
+                <button type="button" name="button" class="btn waves-effect waves-light" {{action "processSIgnUpAction"}}>
+                      {{#if serverSideFormError.length 0}}
+                          Check
+                      {{else}}
+                          Join Now
+                      {{/if}}
+                      <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <div class="col s4"></div>
+        </div>
+
+    </form>
+</div>

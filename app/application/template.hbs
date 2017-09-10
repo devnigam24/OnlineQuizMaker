@@ -1,7 +1,15 @@
+{{left-navigation isSIgnedIn=this.isSIgnedIn userInsession=this.userInsession}}
 <body>
-    {{left-navigation isSIgnedIn=this.isSIgnedIn sessionData=this.sessionData}} {{body-header
+    {{body-header
       showLoginButton=this.showLoginButton
       showJoinButton=this.showJoinButton
       isSIgnedIn=this.isSIgnedIn
-    }} {{main-wrapper}} {{body-footer isSIgnedIn=this.isSIgnedIn}}
+    }}
+    {{main-wrapper
+      userInsession=this.userInsession
+      isSIgnedIn=this.isSIgnedIn
+    }}
+    {{body-footer
+      isSIgnedIn=this.isSIgnedIn
+    }}
 </body>

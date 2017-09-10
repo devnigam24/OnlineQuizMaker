@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    sessionData: {},
+    userInsession: null,
     actions: {
         goBackToHomePage() {
             this.transitionToRoute('application');
