@@ -9,6 +9,10 @@ export default Ember.Controller.extend({
     actions: {
         gotoDashUserBoard() {
             this.transitionToRoute('dashboard');
+        },
+
+        didLogout() {
+          window.location.href = window.location.origin;
         }
     }
 });

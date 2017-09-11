@@ -4,7 +4,7 @@ import Utils from '../helpers/utils';
 export default Ember.Route.extend({
     sessionService: Ember.inject.service('session'),
 
-    userData: Ember.computed('sessionService', function() {
+    userData: Ember.computed(function() {
         return this.get('sessionService').getUserDataFromSession();
     }),
 

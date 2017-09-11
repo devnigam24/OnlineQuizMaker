@@ -58,8 +58,11 @@ export default Ember.Controller.extend({
                             'username': userObject.username,
                             'id': userObject.username
                         });
-                        this.get('sessionService').createSession(userSessionObj);
-                        this.get('appCtrl').set('isSIgnedIn', true);
+                        const sessioPromise = this.get('sessionService').createSession(userSessionObj);
+                        sessioPromise.then((data) => {
+                            this.get('appCtrl').set('isSIgnedIn', true);
+                            this.transitionToRoute('dashboard');
+                        });
                     } else if (data === 'USERNAME_NOT_EXISTS') {
                         this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
                     } else {
