@@ -10,10 +10,6 @@ main {
     flex: 1 0 auto;
 }
 
-.container {
-    margin-left: 3em;
-}
-
 .page-footer {
     background-color: #fff;
 }
@@ -37,6 +33,15 @@ main {
     margin: 0;
 }
 
+.range-field {
+    position: relative;
+    margin-top: 28px !important;
+}
+
+.quiz-checkbox {
+  line-height: 5em;
+}
+
 
 /*for medium and down only*/
 
@@ -46,22 +51,19 @@ main {
 /*for large only*/
 
 @media only screen and (min-width: 992px) {
-
-    .profile-card {
-        width: 109%;
+    main {
+        margin-left: 5em;
     }
-
+    main .container .card {
+        margin-left: 2em;
+        width: 116%;
+    }
     .navPC {
         position: relative;
         overflow: hidden;
         margin-left: 20.2em;
     }
-
     .navPC nav {
         width: 78%;
-    }
-
-    .quiz-container {
-        margin-left: 21em;
     }
 }

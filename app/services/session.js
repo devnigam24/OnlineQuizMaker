@@ -8,7 +8,7 @@ export default Ember.Service.extend({
         });
     },
 
-    getUserDataFromSession(m) {
+    getUserDataFromSession() {
         Ember.Logger.log('Session Data Fetched');
         return JSON.parse(window.sessionStorage.getItem('userSessionData'));
     },

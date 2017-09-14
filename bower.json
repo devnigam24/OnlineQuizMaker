@@ -1,0 +1,7 @@
+{
+  "name": "quiz-maker-app",
+  "dependencies": {
+    "pikaday": "^1.6.1",
+    "moment": "^2.18.1"
+  }
+}

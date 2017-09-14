@@ -1,0 +1,43 @@
+{{yield}}
+<!-- <h3>topic : {{quizObject.topic}}</h3>
+<h3>timeLimit: {{quizObject.timeLimit}}</h3>
+<h3>fromDate : {{quizObject.fromDate}}</h3>
+<h3>toDate : {{quizObject.toDate}}</h3>
+<h3>noOfQuestions : {{quizObject.noOfQuestions}}</h3> -->
+
+<div class="card add-questions-card grey lighten-2">
+    <div class="card-content white-text">
+        <span class="card-title">Question {{questionNumber}}</span>
+        <div class="row">
+            <div class="input-field col s12">
+                {{input id="question" class="validate" value=question.question}}
+                <label for="question">Question</label>
+            </div>
+            <div class="input-field col s6">
+                {{input id="optionOne" class="validate" value=question.optionOne}}
+                <label for="optionOne">Option 1 : Answer Also</label>
+            </div>
+            <div class="input-field col s6">
+                {{input id="optionTwo" class="validate" value=question.optionTwo}}
+                <label for="optionTwo">Option 2</label>
+            </div>
+            <div class="input-field col s6">
+                {{input id="optionThree" class="validate" value=question.optionThree}}
+                <label for="optionThree">Option 3</label>
+            </div>
+            <div class="input-field col s6">
+                {{input id="optionFour" class="validate" value=question.optionFour}}
+                <label for="optionFour">Option 4</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s6"></div>
+            <div class="col s2">
+                <button type="button" class="waves-effect waves-light btn" name="button" {{action 'addThisQuestion' question}}>
+                          Add Questions
+                        </button>
+            </div>
+            <div class="col s6"></div>
+        </div>
+    </div>
+</div>
