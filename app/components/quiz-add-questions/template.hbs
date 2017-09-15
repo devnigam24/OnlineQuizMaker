@@ -1,10 +1,14 @@
 {{yield}}
-<div class="card add-questions-card blue darken-1">
+<div class="card info-questions-card blue darken-1">
     <div class="card-content white-text">
         <span class="card-title">Quiz On {{quizObject.topic}}</span>
         <p>Should attempt {{quizObject.noOfQuestions}} questions within {{quizObject.timeLimit}} Minutes</p>
         <p>Should be given after {{quizObject.fromDate}} and before {{quizObject.toDate}}</p>
     </div>
+</div>
+
+<div class="card quiz-preview">
+    <ul id="tabs-swipe-demo" class="tabs"></ul>
 </div>
 
 <div class="card add-questions-card grey lighten-2">
@@ -32,7 +36,7 @@
                 <label for="optionFour">Option 4</label>
             </div>
         </div>
-        <div class="row">
+        <div class="row add-button-div">
             <div class="col s5"></div>
             <div class="col s2">
                 <button type="button" class="waves-effect waves-light btn" name="button" {{action 'addThisQuestion' question}}>

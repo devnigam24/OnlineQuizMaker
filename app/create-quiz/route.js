@@ -9,6 +9,7 @@ export default Ember.Route.extend({
                 _this.send('setupDatePicker');
                 _this.send('setupTimePicker');
                 _this.send('bindTimeElements');
+                _this.send('initiateOtherMaterializeElements');
             });
         },
 
@@ -61,6 +62,10 @@ export default Ember.Route.extend({
             $('#to_time').on('change', function() {
                 controller.send('setToTime', $(this).val());
             });
+        },
+
+        initiateOtherMaterializeElements() {
+            
         }
 
     }
