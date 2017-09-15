@@ -15,6 +15,7 @@ export default Ember.Component.extend({
                 this.send('animateForNextQuestionAndShow');
             } else {
                 Ember.$('add-button-div').hide();
+                // todo: show here something
             }
         },
         animateThisQuestionAndShowNext() {
