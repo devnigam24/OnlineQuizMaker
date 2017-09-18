@@ -39,15 +39,19 @@ main {
 }
 
 .quiz-checkbox {
-  line-height: 5em;
+    line-height: 5em;
 }
 
 .ques-prev {
-  height: 5em;
+    height: 5em;
 }
 
-.progress{
-  left: 8em;
+.progress {
+    left: 8em;
+}
+
+.info-questions-card {
+  margin: 1em 5em 0em 5em;
 }
 
 

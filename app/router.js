@@ -11,6 +11,8 @@ Router.map(function() {
   this.route('log-in');
   this.route('dashboard');
   this.route('create-quiz');
+  this.route('attempt-quiz');
+  this.route('controller');
 });
 
 export default Router;

@@ -12,27 +12,16 @@ export default Ember.Controller.extend({
             this.transitionToRoute('application');
         },
         addQuestions(quizObject) {
-            // if (this.get('toDate') > this.get('fromDate')) {
-            //     if (quizObject.questions === undefined) {
-            //         quizObject.questions = new Array();
-            //     }
-            //     quizObject.fromDate = this.get('fromDate');
-            //     quizObject.toDate = this.get('toDate');
-            //     this.set('quizObject', quizObject);
-            //     this.set('addQuestionComponent', 'quiz-add-questions');
-            //     this.send('doFormAnimation');
-            // }
-            quizObject = {
-                "topic": "Cpital",
-                "noOfQuestions": "2",
-                "timeLimit": "50",
-                "questions": [],
-                "fromDate": "2017-09-10T19:00:00.000Z",
-                "toDate": "2017-09-11T19:00:00.000Z"
-            };
-            this.set('quizObject', quizObject);
-            this.set('addQuestionComponent', 'quiz-add-questions');
-            this.send('doFormAnimation');
+            if (this.get('toDate') > this.get('fromDate')) {
+                if (quizObject.questions === undefined) {
+                    quizObject.questions = new Array();
+                }
+                quizObject.fromDate = this.get('fromDate');
+                quizObject.toDate = this.get('toDate');
+                this.set('quizObject', quizObject);
+                this.set('addQuestionComponent', 'quiz-add-questions');
+                this.send('doFormAnimation');
+            }
         },
         setFromDate(fromDate) {
             this.set('fromDate', new Date(fromDate));
