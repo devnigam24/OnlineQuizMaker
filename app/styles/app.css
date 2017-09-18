@@ -46,6 +46,10 @@ main {
   height: 5em;
 }
 
+.progress{
+  left: 8em;
+}
+
 
 /*for medium and down only*/
 

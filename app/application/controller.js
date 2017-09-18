@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     userInsession: null,
 
     actions: {
-        gotoDashUserBoard() {
+        getoDashBoard() {
             this.transitionToRoute('dashboard');
         },
 

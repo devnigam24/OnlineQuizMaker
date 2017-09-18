@@ -1,15 +1,27 @@
-{{yield}}
-<div class="card info-questions-card blue darken-1">
-    <div class="card-content white-text">
-        <span class="card-title">Quiz On {{quizObject.topic}}</span>
-        <p>Should attempt {{quizObject.noOfQuestions}} questions within {{quizObject.timeLimit}} Minutes</p>
-        <p>Should be given after {{quizObject.fromDate}} and before {{quizObject.toDate}}</p>
+
+<div class="row quiz-div">
+    <div class="col s12 m12">
+        <div class="card info-questions-card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Quiz on {{quizObject.topic}}</span>
+                <p>Should attempt {{quizObject.noOfQuestions}} questions within {{quizObject.timeLimit}} Minutes</p>
+                <p>Should be given after {{quizObject.fromDate}} and before {{quizObject.toDate}}</p>
+                <p>Once you add all questions you will be able to post it.</p>
+            </div>
+            {{#if addMoreQuestions}}
+                <div class="card-action">
+                    <button class="btn waves-effect waves-light btn-large"{{action 'createQuizElementToPost'}}>Post Quiz</button>
+                </div>
+            {{/if}}
+        </div>
     </div>
 </div>
 
 <div class="card quiz-preview">
     <ul id="tabs-swipe-demo" class="tabs"></ul>
 </div>
+
+{{component dynamicComponent}}
 
 <div class="card add-questions-card grey lighten-2">
     <div class="card-content white-text">
@@ -39,9 +51,8 @@
         <div class="row add-button-div">
             <div class="col s5"></div>
             <div class="col s2">
-                <button type="button" class="waves-effect waves-light btn" name="button" {{action 'addThisQuestion' question}}>
-                          Add Questions
-                        </button>
+                <button type="button" class="waves-effect waves-light btn" name="button" {{action 'addThisQuestion' question}}>Add Questions
+                </button>
             </div>
             <div class="col s5"></div>
         </div>
