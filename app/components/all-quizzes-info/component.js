@@ -4,8 +4,7 @@ export default Ember.Component.extend({
     isStudent: true,
     classNames: ['col s12 m5'],
     actions: {
-        attemptQuiz(quiz) {
-            console.log(quiz);
+        attemptQuiz() {
             Ember.$('.info-questions-card').each(function(o) {
                 $(this).fadeOut(1000);
             });
