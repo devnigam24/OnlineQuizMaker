@@ -93,11 +93,10 @@ main {
 
 @media only screen and (min-width: 992px) {
     main {
-        margin-left: 5em;
+        margin-left: 8em;
     }
     main .container .card {
-        margin-left: 2.25em;
-        width: 116%;
+        width: 120%;
     }
     .navPC {
         position: relative;

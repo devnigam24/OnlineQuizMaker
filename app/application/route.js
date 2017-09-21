@@ -19,5 +19,10 @@ export default Ember.Route.extend({
         } else {
             this.get('sessionService').clearSession();
         }
+    },
+
+    willDestroy() {
+      this._super(...arguments);
+      console.log('willDestroy');
     }
 });

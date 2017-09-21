@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
                 }
                 quizObject.fromDate = this.get('fromDate');
                 quizObject.toDate = this.get('toDate');
+                quizObject.postedBy = this.get('userInsession').firstName;
                 this.set('quizObject', quizObject);
                 this.set('addQuestionComponent', 'quiz-add-questions');
                 this.send('doFormAnimation');
