@@ -3,6 +3,7 @@ import Utils from '../helpers/utils';
 
 export default Ember.Route.extend({
     sessionService: Ember.inject.service('session'),
+    appCtrl: Ember.inject.controller('application'),
 
     setupController(controller, model) {
         this._super(controller, model);
@@ -10,7 +11,9 @@ export default Ember.Route.extend({
         const userSignedIn = this.get('sessionService').isUserSignedIn();
         if (Utils.isValidObject(userData)) {
             controller.set('userInsession', userData);
+            this.get('appCtrl').set('userInsession', userData);
             controller.set('isSIgnedIn', userSignedIn);
+            this.get('appCtrl').set('isSIgnedIn', userSignedIn);
         } else {
             this.get('sessionService').clearSession();
         }

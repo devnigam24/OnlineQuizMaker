@@ -10,7 +10,6 @@ export default Ember.Component.extend({
     appCtrl: Ember.inject.controller('application'),
     actions: {
         addThisQuestion(questionObj) {
-          debugger;
             const quizObject = this.get('quizObject');
             if (quizObject.questions.push(questionObj)) {
                 this.send('animateThisQuestionAndShowNext');

@@ -5,17 +5,21 @@
         </div>
         <a><img class="circle" src="assets/images/dev.png"></a>
         <a><span class="white-text name">{{userInsession.firstName}} {{userInsession.lastName}} </span></a>
-        <a><span class="white-text email">Student</span></a>
+        {{#if isStudent}}
+            <a><span class="white-text email">Student</span></a>
+        {{else}}
+            <a><span class="white-text email">Teacher</span></a>
+        {{/if}}
     </div>
 </li>
 <li>
     {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">add</i>Create Quiz{{/link-to}}
 </li>
 <li>
-  {{#link-to 'show-all-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">send</i>All Quizzes{{/link-to}}
+    {{#link-to 'show-all-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">send</i>All Quizzes{{/link-to}}
 </li>
 <li>
-  <div class="divider"></div>
+    <div class="divider"></div>
 </li>
 <li><a class="subheader">Subheader</a></li>
 <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
