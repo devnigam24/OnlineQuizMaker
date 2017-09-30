@@ -401,5 +401,9 @@ export default [{
     {
         id: "test",
         password: "test123"
+    },
+    {
+        id: "test1",
+        password: "test123"
     }
 ];

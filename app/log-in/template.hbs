@@ -1,7 +1,7 @@
 <h1>Log In to Continue</h1>
-<ul>
+<ul class="errors">
     {{#each serverSideFormError as |error|}}
-        <li>{{error.message}}</li>
+        <li><i class="material-icons">error</i>{{error.message}}</li>
     {{/each}}
 </ul>
 <form class="logInForm" method="post">

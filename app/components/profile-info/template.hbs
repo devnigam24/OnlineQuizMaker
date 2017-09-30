@@ -14,7 +14,7 @@
 <div class="card-reveal teal lighten-3">
     <span class="card-title grey-text text-darken-4">{{userInsession.firstName}} {{userInsession.lastName}}
       <i class="material-icons right">close</i></span>
-    {{#if isStudent}}
+    {{#if userInsession.isStudent}}
         <h5>Student</h5>
     {{else}}
         <h5>Teacher</h5>

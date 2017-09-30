@@ -82,12 +82,19 @@ main {
     font-size: 16px;
 }
 
+.errors li i {
+    position: relative;
+    padding-right: 7px;
+    top: 7px;
+}
 
+.errors li {
+    color: red;
+}
 
 /*for medium and down only*/
 
 @media only screen and (max-width: 992px) {}
-
 
 /*for large only*/
 

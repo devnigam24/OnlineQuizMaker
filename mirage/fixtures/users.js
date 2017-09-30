@@ -1412,4 +1412,18 @@ export default [{
     "country": "Gabon",
     "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper. Duis at lacus.",
     "isStudent": false
+}, {
+    "firstName": "Student",
+    "lastName": "test",
+    "emailId": "test1",
+    "phone": "(721) 296-3360",
+    "password": "test123",
+    "studentuniqueid": "A0E04F77-6958-B6D1-4625-196E49B60D72",
+    "id": "test1",
+    "streetAddress": "1040 Imperdiet, Road",
+    "city": "Bondo",
+    "pincode": "650888",
+    "country": "Gabon",
+    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna et arcu imperdiet ullamcorper. Duis at lacus.",
+    "isStudent": true
 }];

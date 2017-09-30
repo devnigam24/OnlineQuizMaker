@@ -5,7 +5,7 @@
         </div>
         <a><img class="circle" src="assets/images/dev.png"></a>
         <a><span class="white-text name">{{userInsession.firstName}} {{userInsession.lastName}} </span></a>
-        {{#if isStudent}}
+        {{#if userInsession.isStudent}}
             <a><span class="white-text email">Student</span></a>
         {{else}}
             <a><span class="white-text email">Teacher</span></a>
@@ -13,8 +13,14 @@
     </div>
 </li>
 <li>
-    {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">add</i>Create Quiz{{/link-to}}
+    {{#link-to 'dashboard' tagName='a' class='waves-effect' }}<i class="material-icons">home</i>Home{{/link-to}}
 </li>
+{{#if userInsession.isStudent}}
+{{else}}
+    <li>
+        {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">add</i>Create Quiz{{/link-to}}
+    </li>
+{{/if}}
 <li>
     {{#link-to 'show-all-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">send</i>All Quizzes{{/link-to}}
 </li>

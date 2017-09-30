@@ -13,6 +13,7 @@ export default Ember.Route.extend({
         if (Utils.isValidObject(userData)) {
             controller.set('userInsession', userData);
             controller.set('isSIgnedIn', userSignedIn);
+            controller.set('isStudent', userData.isStudent);
         } else {
             this.get('sessionService').clearSession();
         }
