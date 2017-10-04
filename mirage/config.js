@@ -43,7 +43,13 @@ export default function() {
         return db.db.users.find(id);
     });
 
-    this.get('/mockData', (db) => {
-        return db.db.mocks;
+    this.get('/mockUserData', (db) => {
+        return db.db.mockUsers;
     });
+
+    this.get('/mockQuiz', (db) => {
+        return db.db.mockQuizzes;
+    });
+
+
 }

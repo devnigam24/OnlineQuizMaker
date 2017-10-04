@@ -92,6 +92,11 @@ main {
     color: red;
 }
 
+.fixed-action-btn {
+  position: relative;
+  bottom: 0px;
+}
+
 /*for medium and down only*/
 
 @media only screen and (max-width: 992px) {}

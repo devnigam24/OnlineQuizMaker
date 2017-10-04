@@ -14,7 +14,19 @@ export default Ember.Component.extend({
     },
     actions: {
         reportThisQuestion(question) {
-            console.log(question);
+            var $toastContent = $('<span>Report Question ' + question + '</span>').add($('<button class="btn-flat toast-action" onclick="addCommentQuestion">Add Comment</button>'));
+            Materialize.toast($toastContent, 4000);
+        },
+        addCommentQuestion(question, comment) {
+            console.log('aaaaayaaa');
         }
+    },
+
+    addCommentQuestion() {
+        console.log('aaaa');
+    },
+
+    addCommentQuestion: function() {
+      console.log(123);
     }
 });
