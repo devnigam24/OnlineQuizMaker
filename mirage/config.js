@@ -51,5 +51,11 @@ export default function() {
         return db.db.mockQuizzes;
     });
 
+    this.get('/mockMyQuiz', (db, request) => {
+        return db.db.mockQuizzes.where({
+            postedBy: request.queryParams.id
+        });
+    });
+
 
 }

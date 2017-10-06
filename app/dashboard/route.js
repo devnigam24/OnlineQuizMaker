@@ -22,5 +22,12 @@ export default Ember.Route.extend({
     afterModel: function() {
         this.controllerFor('application').set('showLoginButton', false);
         this.controllerFor('application').set('showJoinButton', false);
+    },
+
+    model: function() {
+        return Ember.RSVP.hash({
+            'myQuizzes': Ember.$.getJSON('api/mockMyQuiz?id=' + this.get('sessionService').getUserDataFromSession().id)
+        });
+
     }
 });

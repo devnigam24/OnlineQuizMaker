@@ -1,0 +1,11 @@
+<div class="card-content white-text">
+    <span class="card-title">Quiz on {{quiz.topic}}</span>
+    <p>Should attempt {{quiz.noOfQuestions}} questions within {{quiz.timeLimit}} Minutes</p>
+    <p>Should be given after {{quiz.fromDate}} and before {{quiz.toDate}}</p>
+</div>
+{{#if isStudent}}
+    <div class="card-action">
+        <button class="btn waves-effect waves-light btn-large" {{action 'attemptQuiz'}}>Attempt This</button>
+        <button class="btn waves-effect waves-light btn-large right" {{action 'hideQuiz'}}>Hide This</button>
+    </div>
+{{/if}}
