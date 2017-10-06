@@ -1,0 +1,16 @@
+<ul class="collapsible" data-collapsible="accordion">
+    <li>
+        <div class="collapsible-header"><i class="material-icons">question_answer</i>{{question.question}}</div>
+        <div class="collapsible-body row">
+            {{#each question.options as |option|}}
+                <div class="col s5">
+                    <input class="with-gap" name= {{question.id}} type="radio" id= {{option}} />
+                    <label for= {{option}}>{{option}}</label>
+                </div>
+            {{/each}}
+            <div class="col s2">
+                <a class="btn-floating btn-large waves-effect waves-light red" {{action 'reportThisQuestion' question.question}}><i class="material-icons">report</i>Report</a>
+            </div>
+        </div>
+    </li>
+</ul>

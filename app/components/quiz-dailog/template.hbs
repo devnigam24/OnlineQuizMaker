@@ -1,38 +1,21 @@
-<div class="row card info-questions-card">
+<div class="row card">
     <div class="card-content red lighten-3 black-text">
         <span class="card-title">Quiz on {{model.topic}}</span>
         <p>Should attempt {{model.noOfQuestions}} questions within {{model.timeLimit}} Minutes</p>
         <p>Should be given after {{model.fromDate}} and before {{model.toDate}}</p>
     </div>
-    <div class="divider"></div>
-    {{#each questions as |question|}}
 
-        <ul class="collapsible" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header"><i class="material-icons">question_answer</i>{{question.question}}</div>
-                <div class="collapsible-body row">
-                    <div class="col s5">
-                        <input class="with-gap" name= {{question.question}} type="radio" id= {{question.optionOne}} />
-                        <label for= {{question.optionOne}}>{{question.optionOne}}</label>
-                    </div>
-                    <div class="col s5">
-                        <input class="with-gap" name= {{question.question}} type="radio" id= {{question.optionTwo}} />
-                        <label for= {{question.optionTwo}}>{{question.optionTwo}}</label>
-                    </div>
-                    <div class="col s2">
-                        <a class="btn-floating btn-large waves-effect waves-light red" {{action 'reportThisQuestion' question.question}}><i class="material-icons">report</i>Report</a>
-                    </div>
-                    <div class="col s5">
-                        <input class="with-gap" name= {{question.question}} type="radio" id= {{question.optionThree}} />
-                        <label for= {{question.optionThree}}>{{question.optionThree}}</label>
-                    </div>
-                    <div class="col s5">
-                        <input class="with-gap" name= {{question.question}} type="radio" id= {{question.optionFour}} />
-                        <label for= {{question.optionFour}}>{{question.optionFour}}</label>
-                    </div>
-                </div>
-            </li>
-        </ul>
+    <div class="card-content">
+        {{#each questions as |question|}}
+            {{question-dialog question=question}}
+        {{/each}}
+    </div>
 
-    {{/each}}
+    <div class="row">
+        <div class="col s4"></div>
+        <div class="col s4">
+            <button class="btn waves-effect waves-light btn-large" {{action 'submitQuiz'}}>Submit</button>
+        </div>
+        <div class="col s4"></div>
+    </div>
 </div>
