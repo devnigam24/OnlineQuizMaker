@@ -18,5 +18,9 @@ export default Ember.Service.extend({
 
     getAllQuizzes() {
         return JSON.parse(window.localStorage.getItem('allQuizes'));
+    },
+
+    getMyQuizzes(userName){
+      return Ember.$.getJSON('api/mockMyQuiz?id=' + userName);
     }
 });

@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('create-quiz');
   this.route('show-all-quiz');
   this.route('controller');
+  this.route('my-created-quizzes');
 });
 
 export default Router;

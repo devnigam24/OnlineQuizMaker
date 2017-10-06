@@ -1,7 +1,3 @@
 {{#if isSIgnedIn}}
     {{profile-info userInsession=this.userInsession}}
-    {{#each model.myQuizzes as |allQuizzes|}}
-        {{my-quiz-student quiz=allQuizzes}}
-    {{/each}}
 {{/if}}
-{{model.myQuizzes.postedBy}}
