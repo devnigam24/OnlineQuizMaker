@@ -4,8 +4,10 @@
         <div class="collapsible-body row">
             {{#each question.options as |option|}}
                 <div class="col s5">
-                    <input class="with-gap" name= {{question.id}} type="radio" id= {{option}} />
-                    <label for= {{option}}>{{option}}</label>
+                    <!-- <input class="with-gap" name= {{question.id}} type="radio" id= {{option}} />
+                    <label for= {{option}}>{{option}}</label> -->
+
+                    {{options-dialog name=question.id id=option option=option}}
                 </div>
             {{/each}}
             <div class="col s2">
