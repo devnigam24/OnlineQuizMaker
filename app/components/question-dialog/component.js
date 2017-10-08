@@ -11,12 +11,6 @@ export default Ember.Component.extend({
         },
         addCommentQuestion(question, comment) {
             console.log('aaaaayaaa');
-        },
-        testActions(){
-          console.log('098');
         }
-    },
-    testActions(){
-      console.log('poiu');
     }
 });
