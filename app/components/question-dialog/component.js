@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     didInsertElement() {
-        
+
     },
     actions: {
         reportThisQuestion(question) {
@@ -11,6 +11,12 @@ export default Ember.Component.extend({
         },
         addCommentQuestion(question, comment) {
             console.log('aaaaayaaa');
+        },
+        testActions(){
+          console.log(098);
         }
+    },
+    testActions(){
+      console.log('poiu');
     }
 });
