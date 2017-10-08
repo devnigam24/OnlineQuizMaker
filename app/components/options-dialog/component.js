@@ -18,5 +18,10 @@ export default Ember.Component.extend({
 
     change: function() {
         console.log(this.get('id'));
+        this.send('testActions');
+    },
+
+    testActions: function(){
+      console.log('1');
     }
 });

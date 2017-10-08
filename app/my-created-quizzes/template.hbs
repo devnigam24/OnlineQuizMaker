@@ -1,5 +1,15 @@
 {{#if isSIgnedIn}}
-    {{#each model as |allQuizzes|}}
-        {{my-quiz-student quiz=allQuizzes}}
-    {{/each}}
+    {{#if model}}
+        {{#each model as |allQuizzes|}}
+            {{my-quiz-student quiz=allQuizzes}}
+        {{/each}}
+    {{else}}
+        <div class="row">
+            <div class="col s12 m5">
+                <div class="card-panel teal">
+                    <span class="white-text"><h2>No Quizzes Available</h2></span>
+                </div>
+            </div>
+        </div>
+    {{/if}}
 {{/if}}
