@@ -13,7 +13,7 @@ export default Ember.Component.extend({
             console.log('aaaaayaaa');
         },
         testActions(){
-          console.log(098);
+          console.log('098');
         }
     },
     testActions(){
