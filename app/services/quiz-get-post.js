@@ -2,18 +2,22 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
     postQuiz(quizObject) {
-        let quizArray = window.localStorage.getItem('allQuizes');
-        if (quizArray === null) {
-            quizArray = [];
+        this.post(quizObject, 'allQuizes');
+    },
+
+    post(object, name) {
+        let array = window.localStorage.getItem(name);
+        if (array === null) {
+            array = [];
         } else {
-            quizArray = JSON.parse(quizArray);
+            array = JSON.parse(array);
         }
-        if (typeof quizObject === "object") {
-            quizArray.push(quizObject);
+        if (typeof object === "object") {
+            array.push(object);
         } else {
-            quizArray.push(JSON.stringify(quizObject));
+            array.push(JSON.stringify(object));
         }
-        window.localStorage.setItem('allQuizes', JSON.stringify(quizArray));
+        window.localStorage.setItem(name, JSON.stringify(array));
     },
 
     getAllQuizzes() {
@@ -27,5 +31,9 @@ export default Ember.Service.extend({
 
     getMyQuizzes(userName) {
         return Ember.$.getJSON('api/mockMyQuiz?id=' + userName);
+    },
+
+    postResults(result) {
+        this.post(result, 'results');
     }
 });

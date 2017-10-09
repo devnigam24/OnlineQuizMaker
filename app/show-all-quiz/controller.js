@@ -37,7 +37,12 @@ export default Ember.Controller.extend({
                 });
             });
             evaluationPromise.then((result) => {
-                window.localStorage.setItem('results', JSON.stringify(result));
+                const resultToPost = {
+                  'quizAttemped' : this.get('evaluation.quizId'),
+                  'result': result,
+                  'attempedBy': this.get('userInsession.id')
+                };
+                this.get('quizService').postResults(resultToPost);
                 Ember.run.next(() => {
                     this.transitionToRoute('dashboard');
                 });
