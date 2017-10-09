@@ -8,13 +8,11 @@ export default Ember.Controller.extend({
     actions: {
         checkAnswer(answerGiven) {
             this.get('quizService').getQuizz(answerGiven.quizId).then((data) => {
-                data.questions.forEach((question) => {
-                    if (question.id === answerGiven.questionNumber && answerGiven.text === question.answer) {
-                        console.log('true');
-                    } else {
-                        console.log('false');
-                    }
-                });
+                if (data.questions.findBy('id', answerGiven.questionNumber).answer === answerGiven.text) {
+                    console.log('true');
+                } else {
+                    console.log('false');
+                }
             });
         }
     }

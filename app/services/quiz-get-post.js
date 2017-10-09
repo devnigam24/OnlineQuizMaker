@@ -22,7 +22,6 @@ export default Ember.Service.extend({
     },
 
     getQuizz(id) {
-        // return JSON.parse(window.localStorage.getItem('allQuizes'));
         return Ember.$.getJSON('api/mockQuiz?id=' + id);
     },
 
