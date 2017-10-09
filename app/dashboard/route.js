@@ -4,6 +4,7 @@ import Utils from '../helpers/utils';
 export default Ember.Route.extend({
     sessionService: Ember.inject.service('session'),
     appCtrl: Ember.inject.controller('application'),
+    quizService: Ember.inject.service('quiz-get-post'),
 
     setupController(controller, model) {
         this._super(controller, model);
@@ -22,5 +23,11 @@ export default Ember.Route.extend({
     afterModel: function() {
         this.controllerFor('application').set('showLoginButton', false);
         this.controllerFor('application').set('showJoinButton', false);
+    },
+
+    model: function() {
+        return Ember.RSVP.hash({
+            'allResults' : this.get('quizService').getAllResults()
+        });
     }
 });

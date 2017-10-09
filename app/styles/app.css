@@ -110,6 +110,9 @@ main {
     main .container .card {
         width: 120%;
     }
+    main .container .result-card {
+        width: 50%;
+    }
     .navPC {
         position: relative;
         overflow: hidden;

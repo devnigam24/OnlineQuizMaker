@@ -34,6 +34,11 @@ export default Ember.Service.extend({
     },
 
     postResults(result) {
-        this.post(result, 'results');
+        this.post(result, 'allResults');
+    },
+
+    getAllResults() {
+        return JSON.parse(window.localStorage.getItem('allResults'));
+        // return window.localStorage.getItem('allResults');
     }
 });
