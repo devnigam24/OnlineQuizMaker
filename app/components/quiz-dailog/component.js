@@ -14,7 +14,6 @@ export default Ember.Component.extend({
     },
     actions: {
         submitQuiz(){
-          console.log('Submit quiz');
         },
 
         checkAnswer(answerGiven){
@@ -23,10 +22,8 @@ export default Ember.Component.extend({
     },
 
     addCommentQuestion() {
-        console.log('aaaa');
     },
 
     addCommentQuestion: function() {
-      console.log(123);
     }
 });

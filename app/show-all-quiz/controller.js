@@ -7,8 +7,15 @@ export default Ember.Controller.extend({
     quizService: Ember.inject.service('quiz-get-post'),
     actions: {
         checkAnswer(answerGiven) {
-            console.log(answerGiven);
-            console.log(this.get('quizService').getQuizz(answerGiven.quizId));
+            this.get('quizService').getQuizz(answerGiven.quizId).then((data) => {
+                data.questions.forEach((question) => {
+                    if (question.id === answerGiven.questionNumber && answerGiven.text === question.answer) {
+                        console.log('true');
+                    } else {
+                        console.log('false');
+                    }
+                });
+            });
         }
     }
 });

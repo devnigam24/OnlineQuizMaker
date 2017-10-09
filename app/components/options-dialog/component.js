@@ -18,7 +18,6 @@ export default Ember.Component.extend({
     },
 
     change: function() {
-        console.log();
         const answerGiven = {
             'text': this.get('id'),
             'questionNumber': this.get('name'),

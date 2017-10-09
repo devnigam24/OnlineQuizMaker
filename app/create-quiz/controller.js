@@ -52,9 +52,6 @@ export default Ember.Controller.extend({
         },
         doFormAnimation() {
             Ember.$('.create-quiz-card').fadeOut(1000);
-        },
-        testAction() {
-            console.log('testing');
         }
     }
 });

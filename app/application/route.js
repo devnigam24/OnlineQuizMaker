@@ -23,6 +23,5 @@ export default Ember.Route.extend({
 
     willDestroy() {
       this._super(...arguments);
-      console.log('willDestroy');
     }
 });

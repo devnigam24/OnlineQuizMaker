@@ -11,7 +11,6 @@ export default Ember.Component.extend({
             Materialize.toast($toastContent, 4000);
         },
         addCommentQuestion(question, comment) {
-            console.log('aaaaayaaa');
         },
         checkAnswer(answerGiven){
           this.sendAction('checkAnswer', answerGiven);

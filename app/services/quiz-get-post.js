@@ -23,10 +23,10 @@ export default Ember.Service.extend({
 
     getQuizz(id) {
         // return JSON.parse(window.localStorage.getItem('allQuizes'));
-        return Ember.$.getJSON('api/mockQuiz?id='+id);
+        return Ember.$.getJSON('api/mockQuiz?id=' + id);
     },
 
-    getMyQuizzes(userName){
-      return Ember.$.getJSON('api/mockMyQuiz?id=' + userName);
+    getMyQuizzes(userName) {
+        return Ember.$.getJSON('api/mockMyQuiz?id=' + userName);
     }
 });
