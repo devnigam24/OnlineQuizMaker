@@ -15,8 +15,12 @@ export default Ember.Component.extend({
             this.$().fadeOut(1000);
         },
 
-        checkAnswer(answerGiven) {
-            this.sendAction('checkAnswer', answerGiven);
+        checkAnswer(evaluation) {
+            this.sendAction('checkAnswer', evaluation);
+        },
+
+        submitQuiz() {
+            this.sendAction('submitQuiz');
         }
     }
 });

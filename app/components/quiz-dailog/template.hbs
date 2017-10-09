@@ -7,14 +7,18 @@
 
     <div class="card-content">
         {{#each questions as |question|}}
-            {{question-dialog quizId=model.id question=question checkAnswer=(action "checkAnswer" value=answerGiven)}}
+            {{
+                question-dialog quizId=model.id question=question
+                checkAnswer=(action "checkAnswer" value=answerGiven)
+            }}
         {{/each}}
     </div>
 
     <div class="row">
         <div class="col s4"></div>
         <div class="col s4">
-            <button class="btn waves-effect waves-light btn-large" {{action 'submitQuiz'}}>Submit</button>
+            <button class="btn waves-effect waves-light btn-large" {{action 'submitQuiz'}}>Submit
+              <i class="material-icons right">send</i></button>
         </div>
         <div class="col s4"></div>
     </div>

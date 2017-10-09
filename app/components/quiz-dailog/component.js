@@ -13,17 +13,17 @@ export default Ember.Component.extend({
         this.set('questions', questions);
     },
     actions: {
-        submitQuiz(){
+        submitQuiz() {
+            this.sendAction('submitQuiz');
+            //console.log(this.get('quizController.quizAnswers'));
         },
 
-        checkAnswer(answerGiven){
-          this.sendAction('checkAnswer', answerGiven);
+        checkAnswer(evaluation) {
+            this.sendAction('checkAnswer', evaluation);
         }
     },
 
-    addCommentQuestion() {
-    },
+    addCommentQuestion() {},
 
-    addCommentQuestion: function() {
-    }
+    addCommentQuestion: function() {}
 });

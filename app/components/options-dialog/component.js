@@ -8,9 +8,8 @@ export default Ember.Component.extend({
     classNames: ['with-gap'],
     id: null,
     name: null,
-    quizAnswers: Ember.A([]),
     attributeBindings: ['type', 'name', 'id'],
-
+    quizAnswers: Ember.A([]),
     didInsertElement() {
         this.set('name', this.get('name'));
         this.set('id', this.get('id'));
@@ -27,13 +26,17 @@ export default Ember.Component.extend({
         let quizAnswersGiven = quizAnswers.findBy('questionNumber', answerGiven.questionNumber);
 
         if (Utils.isValidObject(quizAnswersGiven)) {
-            const replacingIndex = this.get('quizAnswers').indexOf(quizAnswersGiven);
-            this.get('quizAnswers')[replacingIndex] = answerGiven;
+            const replacingIndex = quizAnswers.indexOf(quizAnswersGiven);
+            quizAnswers[replacingIndex] = answerGiven;
         } else {
-            this.get('quizAnswers').push(answerGiven);
+            quizAnswers.push(answerGiven);
         }
 
-        console.log(this.get('quizAnswers'));
-    }
+        const evaluation = {
+          'quizId' : this.get('quizId'),
+          'answersToCheck':quizAnswers
+        };
 
+        this.sendAction('checkAnswer', evaluation);
+    }
 });

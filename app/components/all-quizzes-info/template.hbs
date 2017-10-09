@@ -12,4 +12,8 @@
     {{/if}}
 </div>
 
-{{component dynamic-component model=model checkAnswer=(action "checkAnswer" value=answerGiven)}}
+{{
+  component dynamic-component model=model
+  checkAnswer=(action "checkAnswer" value=answerGiven)
+  submitQuiz=(action "submitQuiz")
+}}
