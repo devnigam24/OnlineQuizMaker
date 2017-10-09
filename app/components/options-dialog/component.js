@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Utils from '../../helpers/utils';
 
 export default Ember.Component.extend({
     question: null,
@@ -7,7 +8,7 @@ export default Ember.Component.extend({
     classNames: ['with-gap'],
     id: null,
     name: null,
-    answerGiven: null,
+    quizAnswers: Ember.A([]),
     attributeBindings: ['type', 'name', 'id'],
 
     didInsertElement() {
@@ -20,10 +21,19 @@ export default Ember.Component.extend({
     change: function() {
         const answerGiven = {
             'text': this.get('id'),
-            'questionNumber': this.get('name'),
-            'quizId': this.get('quizId')
+            'questionNumber': this.get('name')
         };
-        this.sendAction('checkAnswer', answerGiven);
+        let quizAnswers = this.get('quizAnswers');
+        let quizAnswersGiven = quizAnswers.findBy('questionNumber', answerGiven.questionNumber);
+
+        if (Utils.isValidObject(quizAnswersGiven)) {
+            const replacingIndex = this.get('quizAnswers').indexOf(quizAnswersGiven);
+            this.get('quizAnswers')[replacingIndex] = answerGiven;
+        } else {
+            this.get('quizAnswers').push(answerGiven);
+        }
+
+        console.log(this.get('quizAnswers'));
     }
 
 });

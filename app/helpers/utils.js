@@ -16,7 +16,7 @@ export function filterObjects(array, keyToFilter) {
 }
 
 export function isValidObject(object) {
-    if (object !== null && JSON.stringify(object) !== '') {
+    if (object && JSON.stringify(object) !== '') {
         return true;
     } else {
         return false;
