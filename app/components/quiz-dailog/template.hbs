@@ -7,7 +7,7 @@
 
     <div class="card-content">
         {{#each questions as |question|}}
-            {{question-dialog question=question}}
+            {{question-dialog quizId=model.id question=question checkAnswer=(action "checkAnswer" value=answerGiven)}}
         {{/each}}
     </div>
 

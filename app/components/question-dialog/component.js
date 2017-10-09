@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+    answerGiven: null,
     didInsertElement() {
 
     },
@@ -11,6 +12,9 @@ export default Ember.Component.extend({
         },
         addCommentQuestion(question, comment) {
             console.log('aaaaayaaa');
+        },
+        checkAnswer(answerGiven){
+          this.sendAction('checkAnswer', answerGiven);
         }
     }
 });

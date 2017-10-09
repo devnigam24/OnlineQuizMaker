@@ -7,17 +7,24 @@ export default Ember.Component.extend({
     classNames: ['with-gap'],
     id: null,
     name: null,
+    answerGiven: null,
     attributeBindings: ['type', 'name', 'id'],
 
     didInsertElement() {
         this.set('name', this.get('name'));
         this.set('id', this.get('id'));
-        const label = `<label for=${this.option}>${this.option}</label>`;
+        const label = `<label for="${this.option}">${this.option}</label>`;
         this.$().after(label);
     },
 
     change: function() {
-        console.log(this.get('id'));
-        this.send('testActions');
+        console.log();
+        const answerGiven = {
+            'text': this.get('id'),
+            'questionNumber': this.get('name'),
+            'quizId': this.get('quizId')
+        };
+        this.sendAction('checkAnswer', answerGiven);
     }
+
 });

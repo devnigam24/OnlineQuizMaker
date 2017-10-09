@@ -15,6 +15,10 @@ export default Ember.Component.extend({
     actions: {
         submitQuiz(){
           console.log('Submit quiz');
+        },
+
+        checkAnswer(answerGiven){
+          this.sendAction('checkAnswer', answerGiven);
         }
     },
 

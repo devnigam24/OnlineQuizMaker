@@ -4,7 +4,7 @@
         <div class="collapsible-body row">
             {{#each question.options as |option|}}
                 <div class="col s5">
-                    {{options-dialog name=question.id id=option option=option}}
+                    {{options-dialog quizId=quizId name=question.id id=option option=option checkAnswer=(action "checkAnswer" value=answerGiven)}}
                 </div>
             {{/each}}
             <div class="col s2">

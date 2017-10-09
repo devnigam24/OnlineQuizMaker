@@ -21,5 +21,9 @@ export default Ember.Route.extend({
 
     model() {
         return this.get('quizService').getAllQuizzes();
+    },
+
+    action: {
+      
     }
 });

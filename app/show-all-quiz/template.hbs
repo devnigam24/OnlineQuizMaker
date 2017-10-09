@@ -1,7 +1,7 @@
 {{outlet}}
 {{#if model}}
     {{#each model as |model|}}
-        {{all-quizzes-info model=model isStudent=this.isStudent}}
+        {{all-quizzes-info model=model isStudent=this.isStudent checkAnswer=(action "checkAnswer" value=answerGiven)}}
     {{/each}}
 {{else}}
     <div class="row">

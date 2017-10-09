@@ -13,6 +13,10 @@ export default Ember.Component.extend({
 
         hideQuiz() {
             this.$().fadeOut(1000);
+        },
+
+        checkAnswer(answerGiven) {
+            this.sendAction('checkAnswer', answerGiven);
         }
     }
 });

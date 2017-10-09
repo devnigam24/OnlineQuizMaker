@@ -47,8 +47,12 @@ export default function() {
         return db.db.mockUsers;
     });
 
-    this.get('/mockQuiz', (db) => {
+    this.get('/mockAllQuiz', (db) => {
         return db.db.mockQuizzes;
+    });
+
+    this.get('/mockQuiz', (db, request) => {
+        return db.db.mockQuizzes.find(request.queryParams.id);
     });
 
     this.get('/mockMyQuiz', (db, request) => {
