@@ -38,7 +38,7 @@ export default Ember.Service.extend({
     },
 
     getAllResults() {
-        return JSON.parse(window.localStorage.getItem('allResults'));
-        // return window.localStorage.getItem('allResults');
+        // return JSON.parse(window.localStorage.getItem('allResults'));
+        return Ember.$.getJSON('api/mockResults');
     }
 });

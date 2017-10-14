@@ -1,8 +1,6 @@
 {{#if isSIgnedIn}}
     {{profile-info userInsession=userInsession}}
-    <div class="row">
-        {{#each model.allResults as |result|}}
-            {{result-viewer result=result user=userInsession.id}}
-        {{/each}}
-    </div>
+    {{#each model.allResults as |result|}}
+        {{result-viewer result=result user=userInsession.id}}
+    {{/each}}
 {{/if}}

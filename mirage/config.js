@@ -61,5 +61,9 @@ export default function() {
         });
     });
 
+    this.get('/mockResults', (db) => {
+        return db.db.mockResults;
+    });
+
 
 }

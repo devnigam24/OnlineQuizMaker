@@ -16,9 +16,11 @@ export default Ember.Controller.extend({
                 if (quizObject.questions === undefined) {
                     quizObject.questions = new Array();
                 }
+                quizObject.id = this.get('userInsession.id') + quizObject.topic;
                 quizObject.fromDate = this.get('fromDate');
                 quizObject.toDate = this.get('toDate');
                 quizObject.postedBy = this.get('userInsession.firstName');
+                quizObject.type = 'MULTIPLE_CHOICES_ONE_ANSWER';
                 this.set('quizObject', quizObject);
                 this.set('addQuestionComponent', 'quiz-add-questions');
                 this.send('doFormAnimation');
