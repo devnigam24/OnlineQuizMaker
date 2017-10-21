@@ -65,5 +65,9 @@ export default function() {
         return db.db.mockResults;
     });
 
+    this.get('/mockReports', (db) => {
+        return db.db.mockReports;
+    });
+
 
 }

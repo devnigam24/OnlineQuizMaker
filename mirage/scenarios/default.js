@@ -5,4 +5,5 @@ export default function(server) {
   server.loadFixtures('mock-users');
   server.loadFixtures('mock-quizzes');
   server.loadFixtures('mock-results');
+  server.loadFixtures('mock-reports');
 }
