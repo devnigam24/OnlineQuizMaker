@@ -5,8 +5,8 @@ export default Ember.Component.extend({
     quizObject: {},
 
     actions: {
-        addQuestions(quizObject) {
-            this.sendAction('addQuestions', quizObject);
+        createQuizObject(quizObject) {
+            this.sendAction('createQuizObject', quizObject);
         }
     },
 

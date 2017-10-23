@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
         goBackToHomePage() {
             this.transitionToRoute('application');
         },
-        addQuestions(quizObject) {
+        createQuizObject(quizObject) {
           this.isValidQuizObject(quizObject);
             if (!this.get('serverSideFormError').length) {
                 if (quizObject.questions === undefined) {
@@ -24,7 +24,6 @@ export default Ember.Controller.extend({
                 quizObject.postedBy = this.get('userInsession.firstName');
                 quizObject.postedFor = [];
                 this.set('quizObject', quizObject);
-                console.log(quizObject);
                 this.set('addQuestionComponent', 'quiz-add-questions');
                 this.send('doFormAnimation');
             }
