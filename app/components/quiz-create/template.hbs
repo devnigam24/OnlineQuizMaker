@@ -1,0 +1,55 @@
+<div class="card create-quiz-card grey lighten-5">
+    <div class="card-content white-text">
+        <span class="card-title black-text"><h4>Create your Quiz</h4></span>
+        <p>About Quiz</p>
+        <div class="row">
+            <div class="input-field black-text col s4">
+                {{input id="topic" class="validate" value=quizObject.topic}}
+                <label for="topic">Quiz Topic</label>
+            </div>
+            <div class="input-field black-text col s4">
+                {{input id="no_que" type="number" class="validate" value=quizObject.noOfQuestions}}
+                <label for="no_que">Number Of Questions</label>
+            </div>
+            <div class="input-field black-text col s4">
+                <p class="range-field">
+                    {{input id="time_limit" type="range" min="0" max="180" value=quizObject.timeLimit}}
+                </p>
+                <label for="time_limit"></label>
+            </div>
+        </div>
+        <p>Quiz Validity</p>
+        <div class="row">
+            <div class="input-field black-text col s6">
+              {{input id="from_date" class="datepicker"}}
+                <label for="from_date">From Date</label>
+            </div>
+            <div class="input-field black-text col s6">
+                {{input id="from_time" class="timepicker"}}
+                <label for="from_time">From Time</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field black-text col s6">
+                {{input id="to_date" class="datepicker"}}
+                <label for="to_date">To Date</label>
+            </div>
+            <div class="input-field black-text col s6">
+                {{input id="to_time" class="timepicker"}}
+                <label for="to_time">To Time</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s4"></div>
+            <div class="input-field col s4">
+                <button type="button" class="waves-effect waves-light btn" name="button" {{action 'addQuestions' quizObject}}>
+                              Add Questions
+                            </button>
+            </div>
+            <div class="input-field col s4"></div>
+        </div>
+    </div>
+</div>
+
+{{component addQuestionComponent quizObject=this.quizObject}}
