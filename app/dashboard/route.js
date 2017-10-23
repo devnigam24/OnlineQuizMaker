@@ -26,9 +26,13 @@ export default Ember.Route.extend({
     },
 
     model: function() {
+        // return Ember.RSVP.hash({
+        //     'allResults' : this.get('quizService').getAllResults(),
+        //     'allReports' : this.get('quizService').getAllReports()
+        // });
+
         return Ember.RSVP.hash({
-            'allResults' : this.get('quizService').getAllResults(),
-            'allReports' : this.get('quizService').getAllReports()
+            'allResults' : this.get('store').findAll('users')
         });
     }
 });

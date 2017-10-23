@@ -50,25 +50,28 @@ export default Ember.Controller.extend({
                     'password': this.get('password')
                 });
                 this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'form'));
-                const promise = this.get('signUpService').callAuthenticateUser(userObject);
-                promise.then((data) => {
-                    if (data === 'LOGIN_VALID') {
-                        this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
-                        const userSessionObj = Ember.Object.create({
-                            'username': userObject.username,
-                            'id': userObject.username
-                        });
-                        const sessioPromise = this.get('sessionService').createSession(userSessionObj);
-                        sessioPromise.then((data) => {
-                            this.get('appCtrl').set('isSIgnedIn', true);
-                            this.transitionToRoute('dashboard');
-                        });
-                    } else if (data === 'USERNAME_NOT_EXISTS') {
-                        this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
-                    } else {
-                        this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
-                    }
-                })
+                //const promise = this.get('signUpService').callAuthenticateUser(userObject);
+                this.get('store').find('authenticationObjects','test').then(function(post) {
+                  console.log(post);
+                });
+                // promise.then((data) => {
+                //     if (data === 'LOGIN_VALID') {
+                //         this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
+                //         const userSessionObj = Ember.Object.create({
+                //             'username': userObject.username,
+                //             'id': userObject.username
+                //         });
+                //         const sessioPromise = this.get('sessionService').createSession(userSessionObj);
+                //         sessioPromise.then((data) => {
+                //             this.get('appCtrl').set('isSIgnedIn', true);
+                //             this.transitionToRoute('dashboard');
+                //         });
+                //     } else if (data === 'USERNAME_NOT_EXISTS') {
+                //         this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
+                //     } else {
+                //         this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
+                //     }
+                // })
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
