@@ -10,6 +10,7 @@ export default Ember.Component.extend({
     appCtrl: Ember.inject.controller('application'),
     actions: {
         addThisQuestion(questionObj) {
+          questionObj = this.cerateQuestionObject(questionObj);
             const quizObject = this.get('quizObject');
             if (quizObject.questions.push(questionObj)) {
                 this.send('animateThisQuestionAndShowNext');
@@ -57,5 +58,14 @@ export default Ember.Component.extend({
                 _this.get('appCtrl').send('getoDashBoard');
             }, 3000);
         }
+    },
+    cerateQuestionObject(questionObj) {
+      let objToPush = {
+        id: this.get('questionNumber'),
+        question: questionObj.question,
+        options: [questionObj.optionOne, questionObj.optionTwo, questionObj.optionThree, questionObj.optionFour],
+        answer: questionObj.optionOne
+      }
+      return objToPush;
     }
 });
