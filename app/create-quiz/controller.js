@@ -9,15 +9,13 @@ export default Ember.Controller.extend({
     addQuestionComponent: null,
     serverSideFormError: Ember.A([]),
     isInputValidText: ValidationHelper.isInputValidText,
-    noErrors: Ember.computed.readOnly('serverSideFormError', function() {
-        return this.get('serverSideFormError').length === 0 ? true : false;
-    }),
     actions: {
         goBackToHomePage() {
             this.transitionToRoute('application');
         },
         addQuestions(quizObject) {
-            if (this.isValidQuizObject(quizObject)) {
+          this.isValidQuizObject(quizObject);
+            if (!this.get('serverSideFormError').length) {
                 if (quizObject.questions === undefined) {
                     quizObject.questions = new Array();
                 }
@@ -42,17 +40,21 @@ export default Ember.Controller.extend({
     isValidQuizObject(quizObject) {
         if (!ValidationHelper.isInputValidText(quizObject.topic)) {
           this.someErrorwithFormInput(ErrorObjects.quizTopicNotExists());
-          return false;
+          return;
         } else {
-          console.log('else');
+          this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizTopic'));
         }
         if (!ValidationHelper.isInputDoesNotHasSpecialChars(quizObject.topic)) {
           this.someErrorwithFormInput(ErrorObjects.quizTopicInvalid());
-          return false;
+          return;
+        } else {
+          this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizTopic'));
         }
-        if (this.get('quizObject.toDate') < this.get('quizObject.fromDate')) {
+
+        if (!quizObject.toDate  ||  !quizObject.fromDate || quizObject.toDate < quizObject.fromDate) {
             this.someErrorwithFormInput(ErrorObjects.quizInvalidDates());
-            return false;
+        } else {
+          this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizDates'));
         }
     },
 
