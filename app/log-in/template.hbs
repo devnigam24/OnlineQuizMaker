@@ -1,9 +1,5 @@
 <h1>Log In to Continue</h1>
-<ul class="errors">
-    {{#each serverSideFormError as |error|}}
-        <li><i class="material-icons">error</i>{{error.message}}</li>
-    {{/each}}
-</ul>
+{{server-error serverSideFormError=serverSideFormError}}
 <form class="logInForm" method="post">
     User Name :{{input name="userName" type="email" class="validate"
   value=userName change=(action 'userNameValidation' userName)}}

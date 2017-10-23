@@ -1,16 +1,22 @@
 import Ember from 'ember';
 import Utils from '../helpers/utils';
+import ValidationHelper from '../helpers/validation-helper';
+import ErrorObjects from '../helpers/error-objects';
 
 export default Ember.Controller.extend({
     userInsession: null,
     isSIgnedIn: null,
     addQuestionComponent: null,
+    serverSideFormError: Ember.A([]),
+    isInputValidText: ValidationHelper.isInputValidText,
+    noErrors: Ember.computed.readOnly('serverSideFormError', function() {
+        return this.get('serverSideFormError').length === 0 ? true : false;
+    }),
     actions: {
         goBackToHomePage() {
             this.transitionToRoute('application');
         },
         addQuestions(quizObject) {
-          console.log(quizObject);
             if (this.isValidQuizObject(quizObject)) {
                 if (quizObject.questions === undefined) {
                     quizObject.questions = new Array();
@@ -34,10 +40,29 @@ export default Ember.Controller.extend({
     },
 
     isValidQuizObject(quizObject) {
-        if (this.get('quizObject.toDate') > this.get('quizObject.fromDate')) {
-            return true;
+        if (!ValidationHelper.isInputValidText(quizObject.topic)) {
+          this.someErrorwithFormInput(ErrorObjects.quizTopicNotExists());
+          return false;
         } else {
+          console.log('else');
+        }
+        if (!ValidationHelper.isInputDoesNotHasSpecialChars(quizObject.topic)) {
+          this.someErrorwithFormInput(ErrorObjects.quizTopicInvalid());
+          return false;
+        }
+        if (this.get('quizObject.toDate') < this.get('quizObject.fromDate')) {
+            this.someErrorwithFormInput(ErrorObjects.quizInvalidDates());
             return false;
         }
     },
+
+    someErrorwithFormInput(errorObject) {
+        let errorArray = this.get('serverSideFormError');
+        if (!Utils.isObjectExistsInArray(errorArray, errorObject)) {
+            errorArray.pushObject(errorObject);
+            this.set('serverSideFormError', errorArray);
+            this.notifyPropertyChange('serverSideFormError');
+        }
+    }
+
 });

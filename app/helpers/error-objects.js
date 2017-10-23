@@ -102,3 +102,24 @@ export function internalServerErrorObject() {
         'message': '500 Internal Server Error'
     };
 }
+
+export function quizTopicNotExists() {
+    return {
+        'label': 'quizTopic',
+        'message': 'Please Enter a quiz topic'
+    };
+}
+
+export function quizTopicInvalid() {
+    return {
+        'label': 'quizTopic',
+        'message': 'Please enter a valid quiz topic'
+    };
+}
+
+export function quizInvalidDates() {
+    return {
+        'label': 'quizDates',
+        'message': 'Please enter valid quiz validity'
+    };
+}
