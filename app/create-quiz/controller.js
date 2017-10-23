@@ -20,16 +20,14 @@ export default Ember.Controller.extend({
                     quizObject.questions = new Array();
                 }
                 quizObject.id = Utils.getRandomQuizId();
-                quizObject.fromDate = this.get('quizObject.fromDate');
-                quizObject.toDate = this.get('quizObject.toDate');
                 quizObject.type = 'MULTIPLE_CHOICES_ONE_ANSWER';
-                quizObject.timeLimit = this.get('quizObject.timeLimit');
                 quizObject.postedBy = this.get('userInsession.firstName');
                 quizObject.postedFor = [];
+                this.set('quizObject', quizObject);
+                console.log(quizObject);
                 this.set('addQuestionComponent', 'quiz-add-questions');
                 this.send('doFormAnimation');
             }
-
         },
 
         doFormAnimation() {
