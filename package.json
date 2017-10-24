@@ -12,10 +12,13 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "watchdb": "json-server --watch public/db/db.json",
+    "dev": "concurrently --kill-others \"json-server --watch public/db/db.json\" \"ember server\""
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
+    "concurrently": "^3.5.0",
     "ember-ajax": "^3.0.0",
     "ember-cli": "2.13.2",
     "ember-cli-app-version": "^3.0.0",
