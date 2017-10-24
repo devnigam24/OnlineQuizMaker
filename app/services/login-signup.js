@@ -27,19 +27,6 @@ export default Ember.Service.extend({
     },
 
     callAuthenticateUser(userObject) {
-        return Ember.$.getJSON('http://localhost:3000/users/' + userObject.username).done((responseJSON, status) => {
-            if (status === "success") {
-                if (responseJSON.password === userObject.password) {
-                    return responseJSON;
-                } else {
-                    return "LOGIN_IN_VALID";
-                }
-            }
-        }).fail((responseJSON, status) => {
-            if (status === "error") {
-                return responseJSON.statusText;
-            }
-        });
     }
 
 });

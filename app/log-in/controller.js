@@ -66,24 +66,22 @@ export default Ember.Controller.extend({
     },
 
     authenticate(userObject) {
-        this.get('store').findRecord('user',userObject.username).then((a,b,c,d) => {
-            console.log(a);
-            console.log(c);
-            console.log(b);
-            console.log(d);
+        this.get('store').query('user', {
+            emailId: userObject.username
+        }).then((responseObj) => {
+            if (responseObj.content.length) {
+                const userData = responseObj.content[0]._data;
+                if (userData.password === userObject.password) {
+                    this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
+                    this.get('sessionService').createSession(userData);
+                    this.get('appCtrl').set('isSIgnedIn', true);
+                    this.transitionToRoute('dashboard');
+                } else {
+                    this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
+                }
+            } else {
+                this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
+            }
         });
-        // const promise = this.get('signUpService').callAuthenticateUser(userObject);
-        // promise.then((data) => {
-        //     if (data === "Not Found") {
-        //         this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
-        //     } else if (data === 'LOGIN_IN_VALID') {
-        //         this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
-        //     } else {
-        //         this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
-        //         this.get('sessionService').createSession(data);
-        //         this.get('appCtrl').set('isSIgnedIn', true);
-        //         this.transitionToRoute('dashboard');
-        //     }
-        // })
     }
 });

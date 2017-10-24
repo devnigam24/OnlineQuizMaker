@@ -29,11 +29,15 @@ export default Ember.Route.extend({
         const userData = this.get('sessionService').getUserDataFromSession();
         if (userData.isStudent) {
             return Ember.RSVP.hash({
-                'data': this.get('quizService').getMyResults(userData.id)
+                data: this.get('store').query('result', {
+                    attempedBy: userData.id
+                })
             });
         } else {
             return Ember.RSVP.hash({
-                'data': this.get('quizService').getAllReports(userData.id)
+                data: this.get('store').query('report', {
+                    attempedBy: userData.id
+                })
             });
         }
 
