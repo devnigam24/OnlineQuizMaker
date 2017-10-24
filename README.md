@@ -11,6 +11,8 @@ You will need the following things properly installed on your computer.
 * [Node.js](https://nodejs.org/) (with NPM)
 * [Ember CLI](https://ember-cli.com/)
 * [PhantomJS](http://phantomjs.org/)
+* [JSON Server](https://github.com/typicode/json-server)
+
 
 ## Installation
 
@@ -20,8 +22,9 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* `npm run dev`
+* Visit your app at [http://localhost:8080](http://localhost:8080).
+* Watch your Database in [http://localhost:3000](http://localhost:3000).
 
 ### Code Generators
 
