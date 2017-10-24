@@ -37,9 +37,8 @@ export default Ember.Service.extend({
         this.post(result, 'allResults');
     },
 
-    getAllResults() {
-        // return JSON.parse(window.localStorage.getItem('allResults'));
-        return Ember.$.getJSON('api/mockResults');
+    getMyResults(userName) {
+      return Ember.$.getJSON('api/mockMyQuiz?id=' + userName);
     },
 
     getAllReports() {

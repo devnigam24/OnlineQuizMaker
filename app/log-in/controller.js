@@ -50,25 +50,7 @@ export default Ember.Controller.extend({
                     'password': this.get('password')
                 });
                 this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'form'));
-                const promise = this.get('signUpService').callAuthenticateUser(userObject);
-                promise.then((data) => {
-                    if (data === 'LOGIN_VALID') {
-                        this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
-                        const userSessionObj = Ember.Object.create({
-                            'username': userObject.username,
-                            'id': userObject.username
-                        });
-                        const sessioPromise = this.get('sessionService').createSession(userSessionObj);
-                        sessioPromise.then((data) => {
-                            this.get('appCtrl').set('isSIgnedIn', true);
-                            this.transitionToRoute('dashboard');
-                        });
-                    } else if (data === 'USERNAME_NOT_EXISTS') {
-                        this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
-                    } else {
-                        this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
-                    }
-                })
+                this.authenticate(userObject);
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
@@ -81,5 +63,27 @@ export default Ember.Controller.extend({
                 this.notifyPropertyChange('serverSideFormError');
             }
         }
+    },
+
+    authenticate(userObject) {
+        this.get('store').findRecord('user',userObject.username).then((a,b,c,d) => {
+            console.log(a);
+            console.log(c);
+            console.log(b);
+            console.log(d);
+        });
+        // const promise = this.get('signUpService').callAuthenticateUser(userObject);
+        // promise.then((data) => {
+        //     if (data === "Not Found") {
+        //         this.send('someErrorwithFormInput', ErrorObjects.usernameNotExists());
+        //     } else if (data === 'LOGIN_IN_VALID') {
+        //         this.send('someErrorwithFormInput', ErrorObjects.credententialsMismatchErrorObject());
+        //     } else {
+        //         this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'credentialInvalid'));
+        //         this.get('sessionService').createSession(data);
+        //         this.get('appCtrl').set('isSIgnedIn', true);
+        //         this.transitionToRoute('dashboard');
+        //     }
+        // })
     }
 });
