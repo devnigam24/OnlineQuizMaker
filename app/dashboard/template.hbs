@@ -2,7 +2,7 @@
     {{profile-info userInsession=userInsession}}
     {{#if userInsession.isStudent}}
         {{#each model.data as |result|}}
-            {{result-viewer result=result user=userInsession.id}}
+            {{result-viewer result=result}}
         {{/each}}
     {{else}}
         {{#each model.data as |report|}}

@@ -97,6 +97,14 @@ main {
   bottom: 0px;
 }
 
+.answer-true {
+  color: green;
+}
+
+.answer-false {
+  color: red;
+}
+
 /*for medium and down only*/
 
 @media only screen and (max-width: 992px) {}
