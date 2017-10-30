@@ -47,14 +47,25 @@ export default Ember.Controller.extend({
     },
 
     postResults() {
-        const resultToPost = {
-            'quizAttemped': this.get('evaluatingQuizId'),
-            'result': this.get('resultArray'),
-            'attempedBy': this.get('userInsession.emailId')
-        };
-        this.get('store').createRecord('result', resultToPost);
-        Ember.run.next(() => {
-            this.transitionToRoute('dashboard');
+        let store = this.get('store');
+        const Quizid = this.get('evaluatingQuizId');
+        let resultToPost = {};
+        const quizPromise = store.find('quiz', Quizid).then((data) => {
+            resultToPost.quizAttemped = data.data.topic;
+            resultToPost.Quizid = Quizid;
+            resultToPost.timeAttempedAt = new Date().getTime();
+            resultToPost.result = this.get('resultArray');
+            resultToPost.attempedBy = this.get('userInsession.emailId');
+            resultToPost.postedBy = data.data.postedBy;
         });
+        quizPromise.then(() => {
+            let postResult = this.get('store').createRecord('result', resultToPost);
+            debugger;
+            postResult.save();
+            Ember.run.next(() => {
+                this.transitionToRoute('dashboard');
+            });
+        });
+
     }
 });
