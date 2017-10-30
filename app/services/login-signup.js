@@ -27,14 +27,6 @@ export default Ember.Service.extend({
     },
 
     callAuthenticateUser(userObject) {
-        return Ember.$.getJSON('api/getAuthenticationObjects?username=' + userObject.username).then(function(obj) {
-            if (obj.error === 'not found') {
-                return "USERNAME_NOT_EXISTS";
-            } else if (obj.password === userObject.password) {
-                return "LOGIN_VALID";
-            } else {
-                return "LOGIN_INVALID";
-            }
-        });
     }
+
 });

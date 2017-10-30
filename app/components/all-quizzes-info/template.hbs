@@ -6,7 +6,7 @@
     </div>
     {{#if isStudent}}
         <div class="card-action">
-            <button class="btn waves-effect waves-light btn-large" {{action 'attemptQuiz'}}>Attempt This</button>
+            <button class="btn waves-effect waves-light btn-large" {{action 'attemptQuiz' model.id}}>Attempt This</button>
             <button class="btn waves-effect waves-light btn-large right" {{action 'hideQuiz'}}>Hide This</button>
         </div>
     {{/if}}

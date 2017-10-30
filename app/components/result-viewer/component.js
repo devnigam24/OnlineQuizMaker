@@ -11,6 +11,10 @@ export default Ember.Component.extend({
         }).length;
     }),
     percentages: Ember.computed('correctAnswers', 'totalQuestions', function() {
-        return Math.round((this.get('correctAnswers')/this.get('totalQuestions')) * 100);
+        return Math.round((this.get('correctAnswers') / this.get('totalQuestions')) * 100);
     }),
+    didInsertElement() {
+        $('.collapsible').collapsible();
+        $('.card-tabs').tabs();
+    }
 });

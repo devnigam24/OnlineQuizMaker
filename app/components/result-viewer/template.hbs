@@ -1,12 +1,17 @@
-{{#if result.attempedBy user}}
-    <div class="blue-grey darken-1">
-        <div class="card-content white-text">
-            <span class="card-title">Yo gave {{result.quizAttemped}} on {{result.timeAttempedAt}}</span>
-            <p>Result : {{correctAnswers}} / {{totalQuestions}}</p>
-            <p>Percentages: {{percentages}} %</p>
-        </div>
-        <div class="card-action">
-            <a href="#">See Details</a>
-        </div>
+<div class="blue-grey darken-1">
+    <div class="card-content white-text">
+        <span class="card-title">Yo gave {{result.quizAttemped}} on {{result.timeAttempedAt}}</span>
+        <p>Result : {{correctAnswers}} / {{totalQuestions}}</p>
+        <p>Percentages: {{percentages}} %</p>
     </div>
-{{/if}}
+    <div class="card-content grey lighten-4">
+        <ul class="collapsible" data-collapsible="accordion">
+            {{#each result.result as |oneResult|}}
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{oneResult.questionAnswered}}</div>
+                    <div class="collapsible-body answer-{{oneResult.isCorrect}}"><span>{{oneResult.answer}}</span></div>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

@@ -26,9 +26,19 @@ export default Ember.Route.extend({
     },
 
     model: function() {
-        return Ember.RSVP.hash({
-            'allResults' : this.get('quizService').getAllResults(),
-            'allReports' : this.get('quizService').getAllReports()
-        });
+        const userData = this.get('sessionService').getUserDataFromSession();
+        if (userData.isStudent) {
+            return Ember.RSVP.hash({
+                data: this.get('store').query('result', {
+                    attempedBy: userData.id
+                })
+            });
+        } else {
+            return Ember.RSVP.hash({
+                data: this.get('store').query('report', {
+                    attempedBy: userData.id
+                })
+            });
+        }
     }
 });

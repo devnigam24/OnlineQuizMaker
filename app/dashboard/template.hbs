@@ -1,12 +1,12 @@
 {{#if isSIgnedIn}}
     {{profile-info userInsession=userInsession}}
     {{#if userInsession.isStudent}}
-        {{#each model.allResults as |result|}}
-            {{result-viewer result=result user=userInsession.id}}
+        {{#each model.data as |result|}}
+            {{result-viewer result=result}}
         {{/each}}
     {{else}}
-        {{#each model.allReports as |report|}}
-            {{report-viewer report=report user=userInsession.id}}
+        {{#each model.data as |report|}}
+            {{report-viewer report=report user=userInsession.emailId}}
         {{/each}}
     {{/if}}
 {{/if}}

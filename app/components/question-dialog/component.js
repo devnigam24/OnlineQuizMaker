@@ -14,7 +14,7 @@ export default Ember.Component.extend({
         addCommentQuestion(question, comment) {
         },
 
-        checkAnswer(evaluation){
+        checkAnswer(evaluation) {
           this.sendAction('checkAnswer', evaluation);
         }
     }
