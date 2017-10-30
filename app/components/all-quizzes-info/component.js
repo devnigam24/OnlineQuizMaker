@@ -4,10 +4,11 @@ export default Ember.Component.extend({
     isStudent: true,
     classNames: ['col s12 m5'],
     actions: {
-        attemptQuiz() {
+        attemptQuiz(quizId) {
             Ember.$('.info-questions-card').each(function(o) {
                 $(this).fadeOut(1000);
             });
+            this.registerQuiz(quizId);
             this.set('dynamic-component', 'quiz-dailog');
         },
 
@@ -21,6 +22,10 @@ export default Ember.Component.extend({
 
         submitQuiz() {
             this.sendAction('submitQuiz');
+        },
+
+        registerQuiz(quizId) {
+            this.registerQuiz(quizId);
         }
     }
 });

@@ -6,7 +6,7 @@
         {{/each}}
     {{else}}
         {{#each model.data as |report|}}
-            {{report-viewer report=report user=userInsession.id}}
+            {{report-viewer report=report user=userInsession.emailId}}
         {{/each}}
     {{/if}}
 {{/if}}

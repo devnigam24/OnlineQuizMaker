@@ -6,47 +6,55 @@ export default Ember.Controller.extend({
     isSIgnedIn: null,
     quizService: Ember.inject.service('quiz-get-post'),
     evaluation: null,
+    evaluatingQuizId: null,
     resultArray: Ember.A([]),
     actions: {
         checkAnswer(evaluation) {
             this.set('evaluation', evaluation);
         },
+        registerQuiz(quizId) {
+            this.set('evaluatingQuizId', quizId);
+        },
         submitQuiz() {
-            const evaluationPromise = new Ember.RSVP.Promise((resolve, reject) => {
+            if (this.get('evaluation')) {
                 let evaluation = this.get('evaluation');
                 let resultArray = this.get('resultArray');
-                this.get('quizService').getQuizz(evaluation.quizId).then((data) => {
-                    evaluation.answersToCheck.forEach((answer) => {
-                        let questionToCompare = data.questions.findBy('id', answer.questionNumber);
-                        if (questionToCompare.answer === answer.text) {
+                const checkingPromise = this.get('store').find('quiz', this.get('evaluatingQuizId')).then((responseQuiz) => {
+                    evaluation.answersToCheck.forEach((answersGiven) => {
+                        const expectedAnswer = responseQuiz.data.questions.findBy('id', answersGiven.questionNumber);
+                        if (expectedAnswer === answersGiven.text) {
                             resultArray.push({
-                                'questionAnswered': questionToCompare.question,
-                                'answer': questionToCompare.answer,
+                                'questionAnswered': expectedAnswer.question,
+                                'answer': expectedAnswer.answer,
                                 'isCorrect': true
                             });
                         } else {
                             resultArray.push({
-                                'questionAnswered': questionToCompare.question,
-                                'answer': questionToCompare.answer,
+                                'questionAnswered': expectedAnswer.question,
+                                'answer': expectedAnswer.answer,
                                 'isCorrect': false
                             });
                         }
                     });
-                    resolve(resultArray);
-                    reject(resultArray);
                 });
-            });
-            evaluationPromise.then((result) => {
-                const resultToPost = {
-                  'quizAttemped' : this.get('evaluation.quizId'),
-                  'result': result,
-                  'attempedBy': this.get('userInsession.id')
-                };
-                this.get('quizService').postResults(resultToPost);
-                Ember.run.next(() => {
-                    this.transitionToRoute('dashboard');
+                checkingPromise.then(() => {
+                    this.postResults();
                 });
-            });
+            } else {
+                this.postResults();
+            }
         }
+    },
+
+    postResults() {
+        const resultToPost = {
+            'quizAttemped': this.get('evaluatingQuizId'),
+            'result': this.get('resultArray'),
+            'attempedBy': this.get('userInsession.emailId')
+        };
+        this.get('store').createRecord('result', resultToPost);
+        Ember.run.next(() => {
+            this.transitionToRoute('dashboard');
+        });
     }
 });
