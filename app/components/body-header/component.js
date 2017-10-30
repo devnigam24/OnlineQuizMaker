@@ -11,7 +11,6 @@ export default Ember.Component.extend({
             this.set('showJoinButton', false);
         },
         logOut() {
-            Ember.Logger.log('Session Data cleared');
             this.get('sessionService').clearSession();
             this.get('appCtrl').send('didLogout');
         }

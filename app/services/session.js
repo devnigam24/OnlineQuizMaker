@@ -14,7 +14,6 @@ export default Ember.Service.extend({
     },
 
     clearSession() {
-        Ember.Logger.log('Session Data Cleared');
         window.sessionStorage.clear();
         return null;
     }

@@ -30,7 +30,7 @@ export default Ember.Route.extend({
         if (userData.isStudent) {
             return Ember.RSVP.hash({
                 data: this.get('store').query('result', {
-                    attempedBy: userData.id
+                    attempedBy: userData.emailId
                 })
             });
         } else {
