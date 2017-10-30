@@ -1,6 +1,5 @@
-{{outlet}}
 {{#if model}}
-    {{#each model as |model|}}
+    {{#each model.data as |model|}}
         {{all-quizzes-info model=model isStudent=this.isStudent
           checkAnswer=(action "checkAnswer" value=answerGiven)
           submitQuiz=(action "submitQuiz")
