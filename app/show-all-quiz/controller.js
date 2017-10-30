@@ -60,7 +60,6 @@ export default Ember.Controller.extend({
         });
         quizPromise.then(() => {
             let postResult = this.get('store').createRecord('result', resultToPost);
-            debugger;
             postResult.save();
             Ember.run.next(() => {
                 this.transitionToRoute('dashboard');
