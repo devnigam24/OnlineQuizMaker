@@ -48,23 +48,29 @@ export default Ember.Controller.extend({
 
     postResults() {
         let store = this.get('store');
-        const Quizid = this.get('evaluatingQuizId');
-        let resultToPost = {};
-        const quizPromise = store.find('quiz', Quizid).then((data) => {
-            resultToPost.quizAttemped = data.data.topic;
-            resultToPost.Quizid = Quizid;
-            resultToPost.timeAttempedAt = new Date().getTime();
-            resultToPost.result = this.get('resultArray');
-            resultToPost.attempedBy = this.get('userInsession.emailId');
-            resultToPost.postedBy = data.data.postedBy;
-        });
-        quizPromise.then(() => {
-            let postResult = this.get('store').createRecord('result', resultToPost);
-            postResult.save();
-            Ember.run.next(() => {
-                this.transitionToRoute('dashboard');
+        const quizId = this.get('evaluatingQuizId');
+        store.find('quiz', quizId).then((data) => {
+            // store.createRecord('result', {
+            //     quizAttemped: data.data.topic,
+            //     quizId: quizId,
+            //     timeAttempedAt: new Date().getTime(),
+            //     result: this.get('resultArray'),
+            //     attempedBy: this.get('userInsession.emailId'),
+            //     postedBy: data.data.postedBy
+            // }).save();
+
+            Ember.$.ajax({
+                url: 'http://localhost:3000/results',
+                type: "POST",
+                data: {
+                    quizAttemped: data.data.topic,
+                    quizId: quizId,
+                    timeAttempedAt: new Date().getTime(),
+                    result: JSON.stringify(this.get('resultArray')),
+                    attempedBy: this.get('userInsession.emailId'),
+                    postedBy: data.data.postedBy
+                },
             });
         });
-
     }
 });

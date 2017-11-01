@@ -248,7 +248,7 @@
   "results": [
     {
       "quizAttemped": "Physics",
-      "Quizid": "0Jqzroq4o",
+      "quizId": "0Jqzroq4o",
       "id": "test1-0Jqzroq4o",
       "timeAttempedAt": "10/14/2017",
       "result": [
@@ -270,9 +270,6 @@
       ],
       "attempedBy": "test1",
       "postedBy": "test"
-    },
-    {
-      "id": "B19olU4AZ"
     }
   ],
   "reports": []
