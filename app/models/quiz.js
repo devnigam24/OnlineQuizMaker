@@ -9,5 +9,7 @@ export default DS.Model.extend({
     fromDate: DS.attr('date'),
     toDate: DS.attr('date'),
     postedBy: DS.attr('string'),
-    postedFor: DS.attr()
+    postedFor: DS.attr(),
+    postTime: DS.attr('number'),
+    reports: DS.attr()
 });

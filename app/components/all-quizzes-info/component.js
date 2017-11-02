@@ -26,6 +26,10 @@ export default Ember.Component.extend({
 
         registerQuiz(quizId) {
             this.registerQuiz(quizId);
+        },
+
+        addReports(questionId) {
+          this.sendAction('addReports',questionId);
         }
     }
 });
