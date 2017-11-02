@@ -35,8 +35,8 @@ export default Ember.Route.extend({
             });
         } else {
             return Ember.RSVP.hash({
-                data: this.get('store').query('report', {
-                    attempedBy: userData.id
+                data: this.get('store').query('result', {
+                    postedBy: userData.emailId
                 })
             });
         }

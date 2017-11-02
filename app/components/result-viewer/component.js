@@ -2,6 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     classNames: ['card'],
+    userText: Ember.computed('userInsession', function() {
+      if (this.get('userInsession.isStudent')) {
+        return 'You';
+      } else {
+        return `${this.get('userInsession.firstName')}` + ` ${this.get('userInsession.lastName')}`;
+      }
+    }),
     totalQuestions: Ember.computed('result', function() {
         return this.get('result.result.length');
     }),
@@ -15,6 +22,5 @@ export default Ember.Component.extend({
     }),
     didInsertElement() {
         $('.collapsible').collapsible();
-        $('.card-tabs').tabs();
     }
 });
