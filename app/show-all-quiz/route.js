@@ -25,7 +25,11 @@ export default Ember.Route.extend({
         const userData = this.get('sessionService').getUserDataFromSession();
         if (userData.isStudent) {
             return Ember.RSVP.hash({
-                data: this.get('store').findAll('quiz')
+                data: this.get('store').findAll('quiz').then((quizzes) => {
+                  return quizzes.filter((quiz) => {
+                    return quiz.data.postedFor.includes(userData.emailId)
+                  });
+                })
             });
         } else {
             return Ember.RSVP.hash({
