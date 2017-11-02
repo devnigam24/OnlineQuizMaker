@@ -22,9 +22,15 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `npm run dev`
+* `ember s`
 * Visit your app at [http://localhost:8080](http://localhost:8080).
-* Watch your Database in [http://localhost:3000](http://localhost:3000).
+
+## Backend / Database installation 
+
+* Create a folder other than this application floder
+* Clone https://github.com/devnigam24/fake-json-server
+* Run command `json-server --watch db.json` inside fake-json-server/online-quiz folder
+* Visit your db at [http://localhost:3000](http://localhost:3000).
 
 ### Code Generators
 
