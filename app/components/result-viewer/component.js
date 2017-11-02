@@ -1,12 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    classNames: ['card'],
-    userText: Ember.computed('userInsession', function() {
-      if (this.get('userInsession.isStudent')) {
+    classNames: ['width-120'],
+    userText: Ember.computed('isStudent','result', function() {
+      if (this.get('isStudent')) {
         return 'You';
       } else {
-        return `${this.get('userInsession.firstName')}` + ` ${this.get('userInsession.lastName')}`;
+        return this.get('result.attempedBy')
       }
     }),
     totalQuestions: Ember.computed('result', function() {

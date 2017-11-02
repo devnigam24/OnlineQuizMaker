@@ -1,6 +1,6 @@
 {{#if isSIgnedIn}}
     {{profile-info userInsession=userInsession}}
     {{#each model.data as |result|}}
-        {{result-viewer result=result userInsession=userInsession}}
+        {{result-viewer result=result isStudent=userInsession.isStudent}}
     {{/each}}
 {{/if}}
