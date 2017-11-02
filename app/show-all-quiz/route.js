@@ -6,8 +6,6 @@ export default Ember.Route.extend({
 
     sessionService: Ember.inject.service('session'),
 
-    myQuizzes: Ember.A([]),
-
     setupController(controller, model) {
         this._super(controller, model);
         const userData = this.get('sessionService').getUserDataFromSession();
@@ -36,9 +34,5 @@ export default Ember.Route.extend({
                 data: this.get('store').findAll('quiz')
             });
         }
-    },
-
-    action: {
-
     }
 });

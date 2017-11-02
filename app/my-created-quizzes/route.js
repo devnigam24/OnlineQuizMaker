@@ -20,6 +20,9 @@ export default Ember.Route.extend({
     },
 
     model: function() {
-        return this.get('quizService').getMyQuizzes(this.get('sessionService').getUserDataFromSession().id);
+        const userData = this.get('sessionService').getUserDataFromSession();
+        return this.get('store').query('quiz', {
+            postedBy: userData.emailId
+        })
     }
 });
