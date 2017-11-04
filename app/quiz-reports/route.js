@@ -19,7 +19,9 @@ export default Ember.Route.extend({
     model() {
         const userData = this.get('sessionService').getUserDataFromSession();
         return Ember.RSVP.hash({
-            allReports: this.get('store').findAll('report')
+            data: this.get('store').query('report', {
+                attempedBy: userData.id
+            })
         });
     }
 });

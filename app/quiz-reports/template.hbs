@@ -1,2 +1,4 @@
 {{outlet}}
-<h1>reporsts</h1>
+{{#each model.data as |report|}}
+    {{report-viewer report=report user=userInsession.emailId}}
+{{/each}}
