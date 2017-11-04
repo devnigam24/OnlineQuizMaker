@@ -15,23 +15,22 @@
 <li>
     {{#link-to 'dashboard' tagName='a' class='waves-effect' }}<i class="material-icons">home</i>Home{{/link-to}}
 </li>
-{{#if userInsession.isStudent}}
-{{else}}
+{{#unless userInsession.isStudent}}
     <li>
         {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">create</i>Create Quiz{{/link-to}}
     </li>
-    <li>
-        {{#link-to 'quiz-reports' tagName='a' class='waves-effect' }}<i class="material-icons">assignment_late</i>Check reports{{/link-to}}
-    </li>
-{{/if}}
-<li>
-    {{#link-to 'show-all-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">assignment</i>All Quizzes{{/link-to}}
-</li>
+{{/unless}}
 <li>
     {{#link-to 'my-created-quizzes' tagName='a' class='waves-effect' }}<i class="material-icons">assignment_ind</i>My Quizzes{{/link-to}}
 </li>
 <li>
     <div class="divider"></div>
 </li>
-<li><a class="subheader">Subheader</a></li>
-<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+{{#unless userInsession.isStudent}}
+    <li>
+        {{#link-to 'quiz-reports' tagName='a' class='waves-effect' }}<i class="material-icons">assignment_late</i>Check reports{{/link-to}}
+    </li>
+{{/unless}}
+<li>
+    {{#link-to 'show-all-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">assignment</i>All Quizzes{{/link-to}}
+</li>
