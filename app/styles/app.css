@@ -93,16 +93,41 @@ main {
 }
 
 .fixed-action-btn {
-  position: relative;
-  bottom: 0px;
+    position: relative;
+    bottom: 0px;
 }
 
 .answer-true {
-  color: green;
+    color: green;
 }
 
 .answer-false {
-  color: red;
+    color: red;
+}
+
+.card-content.collapsible {
+  padding: 2px;
+}
+
+.report-count {
+    color: #1de9b6;
+}
+
+.report-topic {
+    color: #b3e5fc;
+}
+
+.report-question {
+    color: #ffcc80;
+}
+
+.comment {
+  font-size: 2em;
+  color: #eeff41;
+}
+
+.comment-box {
+  padding: 1em;
 }
 
 /*for medium and down only*/
@@ -130,6 +155,6 @@ main {
         width: 78%;
     }
     .width-120 {
-      width: 120%;
+        width: 120%;
     }
 }

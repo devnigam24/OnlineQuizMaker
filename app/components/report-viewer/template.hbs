@@ -1,10 +1,17 @@
-<div class="blue-grey darken-1">
-    <div class="card-content white-text">
-        <span class="card-title">{{report.topic}}</span>
-        <p>report for question : {{report.question}}</p>
-        <p>Number of reports: {{noOfStudentsRepoted}}</p>
-    </div>
-    <div class="card-action">
-        <a href="#">See Details</a>
-    </div>
-</div>
+<ul class="card-content collapsible" data-collapsible="accordion">
+    <li>
+        <div class="collapsible-header blue-grey darken-1">
+            <p class="card-title white-text">
+                <span class="report-count">{{noOfStudentsRepoted}}</span> People commented on
+                <span class="report-topic">{{report.topic}}</span> for
+                <span class="report-question">{{report.question}}</span>
+            </p>
+        </div>
+        <div class="collapsible-body comment-box teal lighten-3">
+            {{#each report.report as |comments|}}
+                    <p class="report-topic"> <span class="comment">{{comments.comment}}</span> - {{comments.reportedBy}}</p>
+                    <p class="report-question"></p>
+            {{/each}}
+        </div>
+    </li>
+</ul>

@@ -6,5 +6,6 @@ export default Ember.Component.extend({
       return this.get('report.report').length;
     }),
     didInsertElement(){
+      $('.collapsible').collapsible();
     }
 });
