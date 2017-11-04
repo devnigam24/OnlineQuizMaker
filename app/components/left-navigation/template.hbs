@@ -18,14 +18,17 @@
 {{#if userInsession.isStudent}}
 {{else}}
     <li>
-        {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">add</i>Create Quiz{{/link-to}}
+        {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">create</i>Create Quiz{{/link-to}}
+    </li>
+    <li>
+        {{#link-to 'quiz-reports' tagName='a' class='waves-effect' }}<i class="material-icons">assignment_late</i>Check reports{{/link-to}}
     </li>
 {{/if}}
 <li>
-    {{#link-to 'show-all-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">send</i>All Quizzes{{/link-to}}
+    {{#link-to 'show-all-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">assignment</i>All Quizzes{{/link-to}}
 </li>
 <li>
-    {{#link-to 'my-created-quizzes' tagName='a' class='waves-effect' }}<i class="material-icons">send</i>My Quizzes{{/link-to}}
+    {{#link-to 'my-created-quizzes' tagName='a' class='waves-effect' }}<i class="material-icons">assignment_ind</i>My Quizzes{{/link-to}}
 </li>
 <li>
     <div class="divider"></div>

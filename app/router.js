@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('show-all-quiz');
   this.route('controller');
   this.route('my-created-quizzes');
+  this.route('quiz-reports');
 });
 
 export default Router;
