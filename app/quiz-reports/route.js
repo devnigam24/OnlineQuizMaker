@@ -20,7 +20,7 @@ export default Ember.Route.extend({
         const userData = this.get('sessionService').getUserDataFromSession();
         return Ember.RSVP.hash({
             data: this.get('store').query('report', {
-                attempedBy: userData.id
+              reportedFor: userData.emailId
             })
         });
     }

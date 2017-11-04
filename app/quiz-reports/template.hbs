@@ -1,4 +1,4 @@
 {{outlet}}
-{{#each model.data as |report|}}
-    {{report-viewer report=report user=userInsession.emailId}}
+{{#each model.data as |model|}}
+    {{report-viewer report=model}}
 {{/each}}

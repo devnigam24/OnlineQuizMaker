@@ -1,13 +1,8 @@
 <div class="blue-grey darken-1">
     <div class="card-content white-text">
-        <span class="card-title">Got repoted for {{report.topic}}</span>
-        {{#each report.reports as |repo|}}
-            <div class="divider"></div>
-            <p>report for question : {{repo.question}}</p>
-            <p>reports: {{repo.report}}</p>
-            <p>Number of reports: {{repo.noOfStudentsRepoted}}</p>
-            <div class="divider"></div>
-        {{/each}}
+        <span class="card-title">{{report.topic}}</span>
+        <p>report for question : {{report.question}}</p>
+        <p>Number of reports: {{noOfStudentsRepoted}}</p>
     </div>
     <div class="card-action">
         <a href="#">See Details</a>
