@@ -41,9 +41,15 @@ export default Ember.Component.extend({
         createQuizElementToPost() {
             const quizObject = this.get('quizObject');
             quizObject.postTime = new Date().getTime();
+            quizObject.noOfQuestions = Number.parseInt(quizObject.noOfQuestions);
             quizObject.reports = [];
-            this.get('quizService').postQuiz(quizObject);
-            this.send('animateQuizPosted');
+            var record = this.get('store').createRecord('quiz', quizObject);
+            record.save().then((quiz) => {
+              Ember.Logger.log(quiz);
+              this.send('animateQuizPosted');
+            }).catch((failure) => {
+              Ember.Logger.error(failure);
+            });
         },
         animateQuizPosted() {
             this.set('dynamicComponent', 'pre-loader');

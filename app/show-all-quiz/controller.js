@@ -99,9 +99,9 @@ export default Ember.Controller.extend({
             comments: 'testing duplicate comment'
         });
         record.save().then((report) => {
-          console.log(report);
+          Ember.Logger.log(report);
         }).catch((failure) => {
-          debugger;
+          Ember.Logger.error(failure);
         });
     }
 });
