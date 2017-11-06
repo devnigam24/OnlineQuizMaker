@@ -15,11 +15,9 @@
 <li>
     {{#link-to 'dashboard' tagName='a' class='waves-effect' }}<i class="material-icons">home</i>Home{{/link-to}}
 </li>
-{{#unless userInsession.isStudent}}
-    <li>
-        {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">create</i>Create Quiz{{/link-to}}
-    </li>
-{{/unless}}
+<li>
+    {{#link-to 'create-quiz' tagName='a' class='waves-effect' }}<i class="material-icons">create</i>Create Quiz{{/link-to}}
+</li>
 <li>
     {{#link-to 'my-created-quizzes' tagName='a' class='waves-effect' }}<i class="material-icons">assignment_ind</i>My Quizzes{{/link-to}}
 </li>

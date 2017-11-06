@@ -19,8 +19,14 @@
             <ul class="collapsible" data-collapsible="accordion">
                 {{#each result.result as |oneResult|}}
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{oneResult.questionAnswered}}</div>
-                        <div class="collapsible-body answer-{{oneResult.isCorrect}}"><span>{{oneResult.answer}}</span></div>
+                        {{#if oneResult.isCorrect}}
+                        <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>{{oneResult.questionAnswered}}</div>
+                          <div class="collapsible-body answer-true"><span>{{oneResult.answer}}</span></div>
+                        {{else}}
+                        <div class="collapsible-header"><i class="material-icons">assignment_late</i>{{oneResult.questionAnswered}}</div>
+                          <div class="collapsible-body answer-false"><span>{{oneResult.answer}}</span></div>
+                        {{/if}}
+
                     </li>
                 {{/each}}
             </ul>
