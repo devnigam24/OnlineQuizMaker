@@ -7,6 +7,10 @@ export default Ember.Component.extend({
     actions: {
         createQuizObject(quizObject) {
             this.sendAction('createQuizObject', quizObject);
+        },
+
+        selectQuizType() {
+            this.set('quizObject.type', Ember.$('#quiz_type').val());
         }
     },
 
@@ -73,7 +77,24 @@ export default Ember.Component.extend({
         });
     },
 
-    initiateOtherMaterializeElements() {},
+    initiateOtherMaterializeElements() {
+        $('select').material_select();
+
+        $('#posted_for').autocomplete({
+            data: {
+                "Apple": null,
+                "Microsoft": null,
+                "Google": null
+            },
+            limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+            onAutocomplete: function(val) {
+                // Callback function when value is autcompleted.
+                let studentChip = `<div class="chip">Tag<i class="close material-icons">close</i></div>`;
+                console.log(studentChip);
+            },
+            minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+        });
+    },
 
     setFromDate(fromDate) {
         this.set('quizObject.fromDate', new Date(fromDate));
