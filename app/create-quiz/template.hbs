@@ -1,8 +1,6 @@
 {{#if isSIgnedIn}}
-    {{server-error serverSideFormError=serverSideFormError}}
-    {{
-      quiz-create
+    {{server-error serverSideFormError=serverSideFormError}} {{
+      quiz-create model=model
       createQuizObject=(action "createQuizObject")
-    }}
-    {{component addQuestionComponent quizObject=quizObject}}
+    }} {{component addQuestionComponent quizObject=quizObject}}
 {{/if}}

@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
             this.transitionToRoute('application');
         },
         createQuizObject(quizObject) {
-          this.isValidQuizObject(quizObject);
+            this.isValidQuizObject(quizObject);
             if (!this.get('serverSideFormError').length) {
                 if (quizObject.questions === undefined) {
                     quizObject.questions = new Array();
@@ -36,22 +36,22 @@ export default Ember.Controller.extend({
 
     isValidQuizObject(quizObject) {
         if (!ValidationHelper.isInputValidText(quizObject.topic)) {
-          this.someErrorwithFormInput(ErrorObjects.quizTopicNotExists());
-          return;
+            this.someErrorwithFormInput(ErrorObjects.quizTopicNotExists());
+            return;
         } else {
-          this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizTopic'));
+            this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizTopic'));
         }
         if (!ValidationHelper.isInputDoesNotHasSpecialChars(quizObject.topic)) {
-          this.someErrorwithFormInput(ErrorObjects.quizTopicInvalid());
-          return;
+            this.someErrorwithFormInput(ErrorObjects.quizTopicInvalid());
+            return;
         } else {
-          this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizTopic'));
+            this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizTopic'));
         }
 
-        if (!quizObject.toDate  ||  !quizObject.fromDate || quizObject.toDate < quizObject.fromDate) {
+        if (!quizObject.toDate || !quizObject.fromDate || quizObject.toDate < quizObject.fromDate) {
             this.someErrorwithFormInput(ErrorObjects.quizInvalidDates());
         } else {
-          this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizDates'));
+            this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'quizDates'));
         }
     },
 

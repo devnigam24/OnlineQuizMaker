@@ -15,4 +15,25 @@ export default Ember.Route.extend({
             this.get('sessionService').clearSession();
         }
     },
+
+    model() {
+        return Ember.RSVP.hash({
+            data: this.get('store').findAll('user').then((users) => {
+              return this.createParticipantsObject(users.get('content'));
+            })
+        });
+    },
+
+    createParticipantsObject(users) {
+      const userData = users.map((user) => {
+        return user._data;
+      });
+
+      let particiapantsObj = {};
+      userData.forEach((user) => {
+        particiapantsObj[`${user.firstName} ${user.lastName}`] = 'fakeRequestImage/'+user.emailId;
+      });
+
+      return particiapantsObj;
+    }
 });
