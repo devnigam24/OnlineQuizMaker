@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
                 quizObject.id = Utils.getRandomQuizId();
                 quizObject.type = 'MULTIPLE_CHOICES_ONE_ANSWER';
                 quizObject.postedBy = this.get('userInsession.firstName');
-                quizObject.postedFor = [];
                 this.set('quizObject', quizObject);
                 this.set('addQuestionComponent', 'quiz-add-questions');
                 this.send('doFormAnimation');

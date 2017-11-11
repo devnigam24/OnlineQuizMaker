@@ -48,16 +48,18 @@ export default Ember.Controller.extend({
         addReports(questionId) {
             var _this = this;
             let quizId = this.get('evaluatingQuizId');
-            this.get('store').findRecord('quiz', quizId, { backgroundReload: false }).then(function(quiz) {
-              var __this = _this;
+            this.get('store').findRecord('quiz', quizId, {
+                backgroundReload: false
+            }).then(function(quiz) {
+                var __this = _this;
                 let newReports = quiz.get('data.reports');
                 newReports.push(questionId);
                 quiz.set('data.reports', newReports);
                 quiz.save().then((reportedData) => {
-                  console.log(reportedData);
-                  __this.postReport(questionId, quizId);
+                    Ember.Logger.log(reportedData);
+                    __this.postReport(questionId, quizId);
                 }).catch((failure) => {
-                  debugger;
+                    Ember.Logger.error(failure);
                 });
             });
         }
@@ -99,9 +101,9 @@ export default Ember.Controller.extend({
             comments: 'testing duplicate comment'
         });
         record.save().then((report) => {
-          Ember.Logger.log(report);
+            Ember.Logger.log(report);
         }).catch((failure) => {
-          Ember.Logger.error(failure);
+            Ember.Logger.error(failure);
         });
     }
 });

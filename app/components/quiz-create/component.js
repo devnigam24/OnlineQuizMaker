@@ -78,15 +78,17 @@ export default Ember.Component.extend({
     },
 
     initiateOtherMaterializeElements() {
+        let _this = this;
         $('select').material_select();
 
         $('#posted_for').autocomplete({
             data: this.get('model.data'),
             limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
             onAutocomplete: function(val) {
-              console.log(val);
-                let studentChip = `<div class="chip">Tag<i class="close material-icons">close</i></div>`;
-                console.log(studentChip);
+                let studentChip = `<div class="chip"><img src="assets/images/dev.png" alt="Contact Person">${val}</div>`;
+                Ember.$('#participants-selector').append(studentChip);
+                Ember.$('#posted_for').val("");
+                _this.addParticipantsInQuizObject(val);
             },
             minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
         });
@@ -118,6 +120,15 @@ export default Ember.Component.extend({
         toDate.setMinutes(toTimeMinutes);
         toDate.setSeconds('00');
         this.set('quizObject.toDate', toDate);
+    },
+
+    addParticipantsInQuizObject(participant) {
+        var postedForArray = this.get('quizObject.postedFor');
+        if (!postedForArray) {
+            postedForArray = [];
+        }
+        postedForArray.push(this.get('model.data')[participant]);
+        this.set('quizObject.postedFor', postedForArray);
     }
 
 });

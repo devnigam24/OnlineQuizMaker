@@ -31,7 +31,7 @@ export default Ember.Route.extend({
 
       let particiapantsObj = {};
       userData.forEach((user) => {
-        particiapantsObj[`${user.firstName} ${user.lastName}`] = 'fakeRequestImage/'+user.emailId;
+        particiapantsObj[`${user.firstName} ${user.lastName}`] = user.emailId;
       });
 
       return particiapantsObj;
