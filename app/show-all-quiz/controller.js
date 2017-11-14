@@ -69,27 +69,14 @@ export default Ember.Controller.extend({
         let store = this.get('store');
         const quizId = this.get('evaluatingQuizId');
         store.find('quiz', quizId).then((data) => {
-            // store.createRecord('result', {
-            //     quizAttemped: data.data.topic,
-            //     quizId: quizId,
-            //     timeAttempedAt: new Date().getTime(),
-            //     result: this.get('resultArray'),
-            //     attempedBy: this.get('userInsession.emailId'),
-            //     postedBy: data.data.postedBy
-            // }).save();
-
-            Ember.$.ajax({
-                url: 'http://localhost:3000/results',
-                type: "POST",
-                data: {
-                    quizAttemped: data.data.topic,
-                    quizId: quizId,
-                    timeAttempedAt: new Date().getTime(),
-                    result: JSON.stringify(this.get('resultArray')),
-                    attempedBy: this.get('userInsession.emailId'),
-                    postedBy: data.data.postedBy
-                },
-            });
+            store.createRecord('result', {
+                quizAttemped: data.data.topic,
+                quizId: quizId,
+                timeAttempedAt: new Date().getTime(),
+                result: this.get('resultArray'),
+                attempedBy: this.get('userInsession.emailId'),
+                postedBy: data.data.postedBy
+            }).save();
         });
     },
 
