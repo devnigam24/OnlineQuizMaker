@@ -30,6 +30,15 @@ export default Ember.Controller.extend({
 
         doFormAnimation() {
             Ember.$('.create-quiz-card').fadeOut(1000);
+        },
+
+        postQuiz(quizObject, callback) {
+            var record = this.get('store').createRecord('quiz', quizObject);
+            record.save().then((quiz) => {
+                callback;
+            }).catch((failure) => {
+                Ember.Logger.error(failure);
+            });
         }
     },
 
@@ -62,5 +71,4 @@ export default Ember.Controller.extend({
             this.notifyPropertyChange('serverSideFormError');
         }
     }
-
 });
