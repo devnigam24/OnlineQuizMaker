@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
 
         postQuiz(quizObject, callback) {
             var record = this.get('store').createRecord('quiz', quizObject);
-            record.save().then((quiz) => {
+            record.save().then(() => {
                 callback;
             }).catch((failure) => {
                 Ember.Logger.error(failure);

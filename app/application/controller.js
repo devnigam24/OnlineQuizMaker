@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
     showLoginButton: true,
     showJoinButton: true,
     userInsession: null,
+    isIndexPage: true,
 
     actions: {
         getoDashBoard() {
