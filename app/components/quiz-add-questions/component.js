@@ -6,7 +6,6 @@ export default Ember.Component.extend({
     questionNumber: 1,
     addMoreQuestions: false,
     dynamicComponent: null,
-    quizService: Ember.inject.service('quiz-get-post'),
     appCtrl: Ember.inject.controller('application'),
     actions: {
         addThisQuestion(questionObj) {

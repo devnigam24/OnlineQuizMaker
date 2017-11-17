@@ -4,8 +4,6 @@ import Utils from '../helpers/utils';
 export default Ember.Route.extend({
     sessionService: Ember.inject.service('session'),
 
-    quizService: Ember.inject.service('quiz-get-post'),
-
     setupController(controller, model) {
         this._super(controller, model);
         const userData = this.get('sessionService').getUserDataFromSession();

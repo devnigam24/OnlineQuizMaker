@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
     isStudent: null,
     userInsession: null,
     isSIgnedIn: null,
-    quizService: Ember.inject.service('quiz-get-post'),
     evaluation: null,
     evaluatingQuizId: null,
     resultArray: Ember.A([]),

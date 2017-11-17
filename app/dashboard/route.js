@@ -4,7 +4,6 @@ import Utils from '../helpers/utils';
 export default Ember.Route.extend({
     sessionService: Ember.inject.service('session'),
     appCtrl: Ember.inject.controller('application'),
-    quizService: Ember.inject.service('quiz-get-post'),
 
     setupController(controller, model) {
         this._super(controller, model);
@@ -20,9 +19,20 @@ export default Ember.Route.extend({
         }
     },
 
+    beforeModel: function() {
+        const lastLocation = this.get('sessionService').getLastLocation();
+        if (lastLocation === 'indexPage') {
+            this.get('sessionService').clearSession();
+            this.get('appCtrl').send('didLogout');
+        } else {
+            this.set('appCtrl.isIndexPage', false);
+        }
+    },
+
     afterModel: function() {
         this.controllerFor('application').set('showLoginButton', false);
         this.controllerFor('application').set('showJoinButton', false);
+        this.get('sessionService').setLastLocation('dashboard');
     },
 
     model: function() {

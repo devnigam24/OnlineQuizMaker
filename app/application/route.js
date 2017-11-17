@@ -21,6 +21,11 @@ export default Ember.Route.extend({
         }
     },
 
+    afterModel: function() {
+      this.get('sessionService').setLastLocation('indexPage');
+
+    },
+
     willDestroy() {
       this._super(...arguments);
     }
