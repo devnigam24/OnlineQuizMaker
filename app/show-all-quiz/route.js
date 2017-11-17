@@ -5,6 +5,8 @@ export default Ember.Route.extend({
 
     sessionService: Ember.inject.service('session'),
 
+    appCtrl: Ember.inject.controller('application'),
+
     setupController(controller, model) {
         this._super(controller, model);
         const userData = this.get('sessionService').getUserDataFromSession();
@@ -16,6 +18,20 @@ export default Ember.Route.extend({
         } else {
             this.get('sessionService').clearSession();
         }
+    },
+
+    beforeModel: function() {
+        const lastLocation = this.get('sessionService').getLastLocation();
+        if (lastLocation === 'indexPage') {
+            this.get('sessionService').clearSession();
+            this.get('appCtrl').send('didLogout');
+        } else {
+            this.set('appCtrl.isIndexPage', false);
+        }
+    },
+
+    afterModel: function() {
+        this.get('sessionService').setLastLocation('show-all-quiz');
     },
 
     model() {
