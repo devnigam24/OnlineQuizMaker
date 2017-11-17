@@ -16,5 +16,13 @@ export default Ember.Service.extend({
     clearSession() {
         window.sessionStorage.clear();
         return null;
+    },
+
+    setLastLocation(location) {
+      window.sessionStorage.setItem('lastLocation',location);
+    },
+
+    getLastLocation() {
+      window.sessionStorage.getItem('lastLocation');
     }
 });

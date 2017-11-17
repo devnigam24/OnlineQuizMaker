@@ -9,7 +9,6 @@ export default Ember.Controller.extend({
     username: null,
     password: null,
     isInputValidText: ValidationHelper.isInputValidText,
-    signUpService: Ember.inject.service('login-signup'),
     sessionService: Ember.inject.service('session'),
     noErrors: Ember.computed.readOnly('serverSideFormError', function() {
         return this.get('serverSideFormError').length === 0 ? true : false;

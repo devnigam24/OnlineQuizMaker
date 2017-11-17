@@ -1,12 +1,11 @@
 {{left-navigation isSIgnedIn=this.isSIgnedIn userInsession=this.userInsession}}
+
 <body>
     {{body-header
       showLoginButton=this.showLoginButton
       showJoinButton=this.showJoinButton
       isSIgnedIn=this.isSIgnedIn
-    }}
-    {{main-wrapper}}
-    {{body-footer
+    }} {{main-wrapper isIndexPage=isIndexPage}} {{body-footer
       isSIgnedIn=this.isSIgnedIn
     }}
 </body>

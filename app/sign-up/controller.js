@@ -12,7 +12,6 @@ export default Ember.Controller.extend({
     phonenumber: null,
     id: null,
     isInputValidText: ValidationHelper.isInputValidText,
-    signUpService: Ember.inject.service('login-signup'),
     noErrors: Ember.computed.readOnly('serverSideFormError', function() {
         return this.get('serverSideFormError').length === 0 ? true : false;
     }),
