@@ -49,16 +49,13 @@ export default Ember.Controller.extend({
             let quizId = this.get('evaluatingQuizId');
             this.get('store').findRecord('quiz', quizId, {
                 backgroundReload: false
-            }).then(function(quiz) {
+            }).then((quiz) => {
                 var __this = _this;
                 let newReports = quiz.get('data.reports');
                 newReports.push(questionId);
                 quiz.set('data.reports', newReports);
-                quiz.save().then((reportedData) => {
-                    Ember.Logger.log(reportedData);
-                    __this.postReport(questionId, quizId);
-                }).catch((failure) => {
-                    Ember.Logger.error(failure);
+                quiz.save().then(() => {
+                    __this.postReport(quiz, questionId);
                 });
             });
         }
@@ -79,17 +76,17 @@ export default Ember.Controller.extend({
         });
     },
 
-    postReport(questionId, quizId) {
-        var record = this.get('store').createRecord('report', {
-            questionId,
-            quizId,
-            ReportedBy: 'test1',
-            comments: 'testing duplicate comment'
-        });
-        record.save().then((report) => {
-            Ember.Logger.log(report);
-        }).catch((failure) => {
-            Ember.Logger.error(failure);
-        });
+    postReport(quiz, questionId) {
+        const report = {
+            reportedFor: quiz.data.postedBy,
+            topic: quiz.data.topic,
+            quizId: quiz.id,
+            question: questionId,
+            report: [{
+                reportedBy: "Eleanor Hakeem",
+                comment: "Incorrect options"
+            }]
+        };
+        this.get('store').createRecord('report', report).save();
     }
 });

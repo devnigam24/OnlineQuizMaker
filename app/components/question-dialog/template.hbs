@@ -3,16 +3,32 @@
         <div class="collapsible-header"><i class="material-icons">question_answer</i>{{question.question}}</div>
         <div class="collapsible-body row">
             {{#each question.options as |option|}}
-                <div class="col s5">
+                <div class="col s6">
                     {{options-dialog quizId=quizId name=question.id id=option
                       option=option checkAnswer=(action "checkAnswer" value=answerGiven)
                     }}
                 </div>
             {{/each}}
-            <div class="col s2">
-                <a class="btn-floating btn-large waves-effect waves-light red"
-                  {{action 'reportThisQuestion' question}}>
-                  <i class="material-icons">report</i>Report</a>
+            <div class="col s12">
+                <div class="fixed-action-btn horizontal click-to-toggle">
+                    <a class="btn-floating btn-large red right"><i class="large material-icons">report_problem</i></a>
+                    <ul>
+                        <li><a class="btn-floating yellow darken-1 tooltipped" {{action 'reportThisQuestionBad' question}}
+                          data-position="bottom" data-delay="50" data-tooltip="Bad Question">
+                          <i class="material-icons">report</i>
+                        </a></li>
+
+                        <li><a class="btn-floating green darken-1 tooltipped" {{action 'reportThisQuestionDuplicate' question}}
+                           data-position="bottom" data-delay="50" data-tooltip="Duplicate / Bad options">
+                          <i class="material-icons">control_point_duplicate</i>
+                        </a></li>
+
+                        <li><a class="btn-floating red darken-1 tooltipped" {{action 'reportThisQuestionRepeat' question}}
+                           data-position="bottom" data-delay="50" data-tooltip="Repeted Question">
+                          <i class="material-icons">repeat</i>
+                        </a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </li>

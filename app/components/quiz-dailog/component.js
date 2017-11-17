@@ -25,9 +25,5 @@ export default Ember.Component.extend({
         addReports(questionId) {
             this.sendAction('addReports', questionId);
         }
-    },
-
-    addCommentQuestion() {},
-
-    addCommentQuestion: function() {}
+    }
 });

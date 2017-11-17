@@ -3,22 +3,22 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     answerGiven: null,
     didInsertElement() {
-
+        $('.tooltipped').tooltip({
+            delay: 50
+        });
     },
     actions: {
-        reportThisQuestion(question) {
-            const reportTextWithAction = `<span>Reported Question: ${question.question}</span>
-            <button class="btn-flat toast-action" onclick="addCommentQuestion">Add Comment</button>`
-
-            const reportText = `<span>Reported : ${question.question}</span>`
-
-            Materialize.toast(reportText, 4000);
+        reportThisQuestionBad(question) {
+            Materialize.toast('<span>Question Reported as Bad</span>', 4000);
             this.send('addReports', question.id);
         },
-
-        addCommentQuestion(question, comment) {
-            console.log(question);
-            console.log(comment);
+        reportThisQuestionDuplicate(question) {
+            Materialize.toast('<span>Options Reported as Duplicate/Bad</span>', 4000);
+            this.send('addReports', question.id);
+        },
+        reportThisQuestionRepeat(question) {
+            Materialize.toast('<span>Question Reported as Duplicate</span>', 4000);
+            this.send('addReports', question.id);
         },
 
         checkAnswer(evaluation) {

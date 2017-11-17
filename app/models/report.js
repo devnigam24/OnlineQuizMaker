@@ -5,5 +5,5 @@ export default DS.Model.extend({
   topic: DS.attr('string'),
   quizId: DS.attr('string'),
   question: DS.attr('string'),
-  report: DS.attr(),
+  report: DS.attr()
 });
