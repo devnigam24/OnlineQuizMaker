@@ -149,6 +149,14 @@ main {
 /*for large only*/
 
 @media only screen and (min-width: 992px) {
+    main {
+      margin-left: 8em;
+    }
+
+    .is-index-page {
+      margin-left: 0em;
+    }
+
     main .container .card {
         width: 120%;
     }
