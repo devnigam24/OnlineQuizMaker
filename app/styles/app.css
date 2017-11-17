@@ -1,5 +1,9 @@
 /* write your own CSS here*/
 
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -106,7 +110,7 @@ main {
 }
 
 .card-content.collapsible {
-  padding: 2px;
+    padding: 2px;
 }
 
 .report-count {
@@ -122,20 +126,20 @@ main {
 }
 
 .comment {
-  font-size: 2em;
-  color: #eeff41;
+    font-size: 2em;
+    color: #eeff41;
 }
 
 .comment-box {
-  padding: 1em;
+    padding: 1em;
 }
 
 .icon-pink {
-  color: #f06292;
+    color: #f06292;
 }
 
 .icon-green {
-  color: #80cbc4;
+    color: #80cbc4;
 }
 
 /*for medium and down only*/
@@ -145,9 +149,6 @@ main {
 /*for large only*/
 
 @media only screen and (min-width: 992px) {
-    main {
-        margin-left: 8em;
-    }
     main .container .card {
         width: 120%;
     }
@@ -166,6 +167,11 @@ main {
         width: 120%;
     }
     .width-20 {
-      width: 20em;
+        width: 20em;
+    }
+    .parallax-container {
+        height: 600px;
+        width: 97%;
+        margin-left: 1em;
     }
 }

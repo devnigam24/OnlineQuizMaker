@@ -5,14 +5,7 @@
       showLoginButton=this.showLoginButton
       showJoinButton=this.showJoinButton
       isSIgnedIn=this.isSIgnedIn
-    }}
-    {{#if isIndexPage}}
-        <h1>hello</h1>
-    {{else}}
-        {{main-wrapper}}
-    {{/if}}
-
-    {{body-footer
+    }} {{main-wrapper isIndexPage=isIndexPage}} {{body-footer
       isSIgnedIn=this.isSIgnedIn
     }}
 </body>
