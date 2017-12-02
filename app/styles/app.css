@@ -142,6 +142,11 @@ main {
     color: #80cbc4;
 }
 
+.icon-report {
+    position: absolute;
+    right: 2em !important;
+}
+
 /*for medium and down only*/
 
 @media only screen and (max-width: 992px) {}
@@ -150,13 +155,11 @@ main {
 
 @media only screen and (min-width: 992px) {
     main {
-      margin-left: 8em;
+        margin-left: 8em;
     }
-
     .is-index-page {
-      margin-left: 0em;
+        margin-left: 0em;
     }
-
     main .container .card {
         width: 120%;
     }
