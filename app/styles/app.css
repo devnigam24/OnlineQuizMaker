@@ -147,9 +147,15 @@ main {
     right: 2em !important;
 }
 
+.login-signup-div {
+    float: right
+}
+
 /*for medium and down only*/
 
-@media only screen and (max-width: 992px) {}
+@media only screen and (max-width: 992px) {
+
+}
 
 /*for large only*/
 
