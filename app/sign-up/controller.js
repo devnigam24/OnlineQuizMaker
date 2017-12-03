@@ -133,10 +133,12 @@ export default Ember.Controller.extend({
         someErrorwithFormInput(errorObject) {
             let errorArray = this.get('serverSideFormError');
             if (!Utils.isObjectExistsInArray(errorArray, errorObject)) {
-                errorArray.pushObject(errorObject);
-                this.set('serverSideFormError', errorArray);
-                this.notifyPropertyChange('serverSideFormError');
                 Materialize.toast(errorObject.message, 4000);
+                Ember.run.later(() => {
+                    errorArray.pushObject(errorObject);
+                    this.set('serverSideFormError', errorArray);
+                    this.notifyPropertyChange('serverSideFormError');
+                }, 4000);
             }
         }
     }
