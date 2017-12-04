@@ -1,4 +1,4 @@
-{{#if model}}
+{{#if model.data}}
     {{#each model.data as |model|}}
         {{all-quizzes-info model=model isStudent=this.isStudent
           checkAnswer=(action "checkAnswer" value=answerGiven)

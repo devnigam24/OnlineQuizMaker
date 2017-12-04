@@ -121,6 +121,7 @@ export default Ember.Controller.extend({
             if (this.get('noErrors')) {
                 const userToPush = this.createRandomUser();
                 this.get('store').createRecord('user', userToPush).save();
+                this.transitionToRoute('log-in');
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
