@@ -6,7 +6,7 @@ export default DS.Model.extend({
     emailId: DS.attr('string'),
     phone: DS.attr('string'),
     password: DS.attr('string'),
-    studentuniqueid: DS.attr('string'),
+    cwid: DS.attr('string'),
     streetAddress: DS.attr('string'),
     city: DS.attr('string'),
     pincode: DS.attr('string'),

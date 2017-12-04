@@ -1,3 +1,5 @@
+import Internationalization from './internationalization';
+
 export function isObjectExistsInArray(array, object) {
     var found = false;
     for (var i = 0; i < array.length; i++) {
@@ -23,7 +25,7 @@ export function isValidObject(object) {
     }
 }
 
-export function getRandomQuizId() {
+export function getRandomId() {
     let text = "";
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -31,6 +33,30 @@ export function getRandomQuizId() {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
+}
+
+export function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+export function getRandomCity() {
+  const array = Internationalization.cities;
+  return array[this.getRandomArbitrary(0,array.length)];
+}
+
+export function getRandomPinCode() {
+  const array = Internationalization.pincodes;
+  return array[this.getRandomArbitrary(0,array.length)];
+}
+
+export function getRandomAddress() {
+  const array = Internationalization.streetAddress;
+  return array[this.getRandomArbitrary(0,array.length)];
+}
+
+export function getRandomDesc() {
+  const array = Internationalization.description;
+  return array[this.getRandomArbitrary(0,array.length)];
 }
 
 export function getTodatDate() {

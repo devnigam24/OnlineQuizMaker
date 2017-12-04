@@ -10,17 +10,26 @@ export default Ember.Controller.extend({
     firstname: null,
     lastname: null,
     phonenumber: null,
-    id: null,
+    cwid: null,
     isInputValidText: ValidationHelper.isInputValidText,
-    noErrors: Ember.computed.readOnly('serverSideFormError', function() {
-        return this.get('serverSideFormError').length === 0 ? true : false;
-    }),
-    serverSideFormErrorObserver: Ember.observer('serverSideFormError', function() {
-        if (this.isInputValidText(this.get('username')) &&
+    inputsTouced: Ember.computed('username', 'password', 'firstname', 'lastname', 'phonenumber', 'cwid', function() {
+        return this.isInputValidText(this.get('username')) &&
             this.isInputValidText(this.get('password')) &&
             this.isInputValidText(this.get('firstname')) &&
-            this.isInputValidText(this.get('lastname'))
-        ) {
+            this.isInputValidText(this.get('lastname')) &&
+            this.isInputValidText(this.get('phonenumber')) &&
+            this.isInputValidText(this.get('cwid'));
+    }),
+    noErrors: Ember.computed('serverSideFormError', function() {
+        if (this.get('inputsTouced')) {
+            return this.get('serverSideFormError').length === 0 ? true : false;
+        } else {
+            return false;
+        }
+
+    }),
+    serverSideFormErrorObserver: Ember.observer('serverSideFormError', function() {
+        if (this.get('inputsTouced')) {
             this.removeObserver('serverSideFormError');
             this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'form'));
         }
@@ -100,36 +109,23 @@ export default Ember.Controller.extend({
 
         cwidValidation(value) {
             if (ValidationHelper.isInputValidNumber(value)) {
-                this.set('id', value);
+                this.set('cwid', value);
                 this.set('serverSideFormError', Utils.filterObjects(this.serverSideFormError, 'cid'));
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.idInvalidErrorObject());
-                this.set('id', null);
+                this.set('cwid', null);
             }
         },
 
         processSIgnUpAction() {
-            if (this.noErrors && this.isInputValidText(this.username) &&
-                this.isInputValidText(this.firstname) && this.isInputValidText(this.lastname) &&
-                this.isInputValidText(this.password)) {
-                const userObject = Ember.Object.create({
-                    'username': this.get('username'),
-                    'password': this.get('password'),
-                    'lastname': this.get('lastname'),
-                    'firstname': this.get('firstname'),
-                    'phone': this.get('phonenumber'),
-                    'id': this.get('id'),
-                    "streetAddress": "P.O. Box 279, 7334 Feugiat St.",
-                    "city": "Miramichi",
-                    "pincode": "NC6A 7EJ",
-                    "country": "Peru",
-                    "desc": "Some long description fetched from Database"
-                });
-                this.get('signUpService').storeUserRegistration(userObject);
+            if (this.get('noErrors')) {
+                const userToPush = this.createRandomUser();
+                this.get('store').createRecord('user', userToPush).save();
             } else {
                 this.send('someErrorwithFormInput', ErrorObjects.formInvalidErrorObject());
             }
         },
+
         someErrorwithFormInput(errorObject) {
             let errorArray = this.get('serverSideFormError');
             if (!Utils.isObjectExistsInArray(errorArray, errorObject)) {
@@ -141,5 +137,25 @@ export default Ember.Controller.extend({
                 }, 4000);
             }
         }
+    },
+
+    createRandomUser() {
+        const userObject = {
+            emailId: this.get('username'),
+            password: this.get('password'),
+            lastName: this.get('lastname'),
+            firstName: this.get('firstname'),
+            phone: this.get('phonenumber'),
+            cwid: this.get('cwid'),
+            streetAddress: Utils.getRandomAddress(),
+            city: Utils.getRandomCity(),
+            pincode: Utils.getRandomPinCode(),
+            country: "USA",
+            desc: Utils.getRandomDesc(),
+            isStudent: this.get('isStudent'),
+            id: Utils.getRandomId()
+        };
+
+        return userObject;
     }
 });

@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
                 if (quizObject.questions === undefined) {
                     quizObject.questions = new Array();
                 }
-                quizObject.id = Utils.getRandomQuizId();
+                quizObject.id = Utils.getRandomId();
                 quizObject.type = 'MULTIPLE_CHOICES_ONE_ANSWER';
                 quizObject.postedBy = this.get('userInsession.firstName');
                 this.set('quizObject', quizObject);

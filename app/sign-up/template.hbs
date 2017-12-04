@@ -36,7 +36,11 @@
         </div>
 
         <div class="row">
-            <div class="col s4"></div>
+            <div class="col s2"></div>
+            <div class="col s4">
+              {{input type="checkbox" name="isStudent" id="isStudent" checked=isStudent}}
+              <label for="isStudent">I am a Student</label>
+            </div>
             <div class="col s4">
                 <button type="button" name="button" class="btn waves-effect waves-light" {{action "processSIgnUpAction"}}>
                       {{#if serverSideFormError.length 0}}
@@ -47,7 +51,7 @@
                       <i class="material-icons right">send</i>
                 </button>
             </div>
-            <div class="col s4"></div>
+            <div class="col s2"></div>
         </div>
 
     </form>
