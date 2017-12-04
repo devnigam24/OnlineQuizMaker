@@ -1,4 +1,13 @@
-{{outlet}}
-{{#each model.data as |model|}}
-    {{report-viewer report=model}}
-{{/each}}
+{{#if model.data}}
+    {{#each model.data as |model|}}
+        {{report-viewer report=model}}
+    {{/each}}
+{{else}}
+    <div class="row">
+        <div class="col s12 m5">
+            <div class="card-panel teal">
+                <span class="white-text"><h2>No Reports Available</h2></span>
+            </div>
+        </div>
+    </div>
+{{/if}}
