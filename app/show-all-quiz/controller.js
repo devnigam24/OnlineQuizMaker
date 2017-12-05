@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Utils from '../helpers/utils';
 
 export default Ember.Controller.extend({
     isStudent: null,
@@ -7,6 +8,11 @@ export default Ember.Controller.extend({
     evaluation: null,
     evaluatingQuizId: null,
     resultArray: Ember.A([]),
+    userFullName: Ember.computed('userInsession', function() {
+        let firstName = this.get('userInsession.firstName');
+        let lastName = this.get('userInsession.lastName');
+        return `${firstName} ${lastName}`;
+    }),
     actions: {
         checkAnswer(evaluation) {
             this.set('evaluation', evaluation);
@@ -21,7 +27,7 @@ export default Ember.Controller.extend({
                 const checkingPromise = this.get('store').find('quiz', this.get('evaluatingQuizId')).then((responseQuiz) => {
                     evaluation.answersToCheck.forEach((answersGiven) => {
                         const expectedAnswer = responseQuiz.data.questions.findBy('id', answersGiven.questionNumber);
-                        if (expectedAnswer === answersGiven.text) {
+                        if (expectedAnswer.answer === answersGiven.text) {
                             resultArray.push({
                                 'questionAnswered': expectedAnswer.question,
                                 'answer': expectedAnswer.answer,
@@ -42,6 +48,8 @@ export default Ember.Controller.extend({
             } else {
                 this.postResults();
             }
+            this.setThisQuizAsAttemped();
+            this.transitionToRoute('dashboard');
         },
 
         addReports(questionId) {
@@ -71,7 +79,8 @@ export default Ember.Controller.extend({
                 timeAttempedAt: new Date().getTime(),
                 result: this.get('resultArray'),
                 attempedBy: this.get('userInsession.emailId'),
-                postedBy: data.data.postedBy
+                postedBy: data.data.postedBy,
+                id: Utils.getRandomId()
             }).save();
         });
     },
@@ -83,10 +92,17 @@ export default Ember.Controller.extend({
             quizId: quiz.id,
             question: questionId,
             report: [{
-                reportedBy: "Eleanor Hakeem",
+                reportedBy: this.get('userFullName'),
                 comment: "Incorrect options"
             }]
         };
         this.get('store').createRecord('report', report).save();
+    },
+
+    setThisQuizAsAttemped() {
+        this.get('store').findRecord('quiz', this.get('evaluatingQuizId')).then((responseQuiz) => {
+            responseQuiz.get('postedFor').removeObject(this.get('userInsession.emailId'));
+            responseQuiz.save();
+        });
     }
 });

@@ -6,20 +6,16 @@ export default Ember.Component.extend({
     tagName: 'input',
     type: 'radio',
     classNames: ['with-gap'],
-    id: null,
     name: null,
-    attributeBindings: ['type', 'name', 'id'],
+    attributeBindings: ['type', 'name'],
     quizAnswers: Ember.A([]),
     didInsertElement() {
-        this.set('name', this.get('name'));
-        this.set('id', this.get('id'));
-        const label = `<label for="${this.option}">${this.option}</label>`;
-        this.$().after(label);
+        this.$().after(`<label for="${this.get('elementId')}">${this.get('option')}</label>`);
     },
 
     change: function() {
         const answerGiven = {
-            'text': this.get('id'),
+            'text': this.get('option'),
             'questionNumber': this.get('name')
         };
         let quizAnswers = this.get('quizAnswers');

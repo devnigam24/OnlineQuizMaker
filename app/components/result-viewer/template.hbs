@@ -1,16 +1,22 @@
 <ul class="collapsible popout" data-collapsible="accordion">
     <li>
-        <div class="collapsible-header card-panel blue-grey lighten-1">
+        <div class="collapsible-header card-panel cyan darken-2">
             <div class="row">
                 <div class="col s12 m12 white-text">
                     <div class="col s12 m12">
-                        <span class="card-title">{{userText}} gave {{result.quizAttemped}} on {{result.timeAttempedAt}}</span>
+                        <span class="flow-text">{{userText}} gave {{result.quizAttemped}} on {{result.timeAttempedAt}}</span>
                     </div>
-                    <div class="col s6 m6">
-                        <p>Result : {{correctAnswers}} / {{totalQuestions}}</p>
+                    <div class="col s3">
+                      Total Questions: <span class="flow-text"> {{totalQuizQuestions}} </span>
                     </div>
-                    <div class="col s6 m6">
-                        <p>Percentages: {{percentages}} %</p>
+                    <div class="col s3">
+                        Questions Attemped: <span class="flow-text"> {{totalQuestionsAttempted}} </span>
+                    </div>
+                    <div class="col s3">
+                        Correct Answers: <span class="flow-text"> {{correctAnswers}} </span>
+                    </div>
+                    <div class="col s3">
+                        Result: <span class="flow-text"> {{percentages}} %</span> 
                     </div>
                 </div>
             </div>
@@ -20,11 +26,11 @@
                 {{#each result.result as |oneResult|}}
                     <li>
                         {{#if oneResult.isCorrect}}
-                        <div class="collapsible-header"><i class="material-icons icon-green">assignment_turned_in</i>{{oneResult.questionAnswered}}</div>
-                          <div class="collapsible-body answer-true"><span>{{oneResult.answer}}</span></div>
+                            <div class="collapsible-header"><i class="material-icons icon-green">assignment_turned_in</i>{{oneResult.questionAnswered}}</div>
+                            <div class="collapsible-body answer-true"><span>{{oneResult.answer}}</span></div>
                         {{else}}
-                        <div class="collapsible-header"><i class="material-icons icon-pink">assignment_late</i>{{oneResult.questionAnswered}}</div>
-                          <div class="collapsible-body answer-false"><span>{{oneResult.answer}}</span></div>
+                            <div class="collapsible-header"><i class="material-icons icon-pink">assignment_late</i>{{oneResult.questionAnswered}}</div>
+                            <div class="collapsible-body answer-false"><span>{{oneResult.answer}}</span></div>
                         {{/if}}
 
                     </li>
@@ -33,3 +39,4 @@
         </div>
     </li>
 </ul>
+{{totalQuestionsOnQuiz}}

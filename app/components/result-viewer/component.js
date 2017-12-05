@@ -9,7 +9,7 @@ export default Ember.Component.extend({
         return this.get('result.attempedBy')
       }
     }),
-    totalQuestions: Ember.computed('result', function() {
+    totalQuestionsAttempted: Ember.computed('result', function() {
         return this.get('result.result.length');
     }),
     correctAnswers: Ember.computed('result', function() {
@@ -17,10 +17,11 @@ export default Ember.Component.extend({
             return obj.isCorrect === true;
         }).length;
     }),
-    percentages: Ember.computed('correctAnswers', 'totalQuestions', function() {
-        return Math.round((this.get('correctAnswers') / this.get('totalQuestions')) * 100);
+    percentages: Ember.computed('totalQuizQuestions', function() {
+        return Math.round((this.get('correctAnswers') / this.get('totalQuizQuestions')) * 100);
     }),
     didInsertElement() {
         $('.collapsible').collapsible();
+        this.sendAction('setResults', this.get('result.quizId'));
     }
 });

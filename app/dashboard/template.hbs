@@ -1,6 +1,11 @@
 {{#if isSIgnedIn}}
     {{profile-info userInsession=userInsession}}
     {{#each model.data as |result|}}
-        {{result-viewer result=result isStudent=userInsession.isStudent}}
+        {{
+          result-viewer result=result
+          isStudent=userInsession.isStudent
+          setResults=(action "setResults")
+          totalQuizQuestions=totalQuizQuestions
+        }}
     {{/each}}
 {{/if}}

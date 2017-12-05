@@ -142,9 +142,8 @@ main {
     color: #80cbc4;
 }
 
-.icon-report {
-    position: absolute;
-    right: 2em !important;
+.fixed-action-btn.horizontal ul {
+    top: -1em;
 }
 
 .login-signup-div {

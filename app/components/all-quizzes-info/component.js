@@ -5,7 +5,7 @@ export default Ember.Component.extend({
     classNames: ['col s12 m5'],
     actions: {
         attemptQuiz(quizId) {
-            Ember.$('.info-questions-card').each(function(o) {
+            Ember.$('.info-questions-card').each(function() {
                 $(this).fadeOut(1000);
             });
             this.registerQuiz(quizId);
@@ -29,7 +29,7 @@ export default Ember.Component.extend({
         },
 
         addReports(questionId) {
-          this.sendAction('addReports',questionId);
+            this.sendAction('addReports', questionId);
         }
     }
 });
