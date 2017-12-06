@@ -10,23 +10,23 @@ export default Ember.Component.extend({
     actions: {
         reportThisQuestionBad(question) {
             Materialize.toast('<span>Question Reported as Bad</span>', 4000);
-            this.send('addReports', question.id);
+            this.send('addReports', 'BAD_QUESTION', question.id);
         },
         reportThisQuestionDuplicate(question) {
             Materialize.toast('<span>Options Reported as Duplicate/Bad</span>', 4000);
-            this.send('addReports', question.id);
+            this.send('addReports', 'DUPLICATE_OPTIONS', question.id);
         },
         reportThisQuestionRepeat(question) {
             Materialize.toast('<span>Question Reported as Duplicate</span>', 4000);
-            this.send('addReports', question.id);
+            this.send('addReports', 'DUPLICATE_QUESTION', question.id);
         },
 
         checkAnswer(evaluation) {
             this.sendAction('checkAnswer', evaluation);
         },
 
-        addReports(questionId) {
-            this.sendAction('addReports', questionId);
+        addReports(type, questionId) {
+            this.sendAction('addReports', type, questionId);
         }
     }
 });

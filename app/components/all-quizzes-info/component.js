@@ -28,8 +28,8 @@ export default Ember.Component.extend({
             this.registerQuiz(quizId);
         },
 
-        addReports(questionId) {
-            this.sendAction('addReports', questionId);
+        addReports(type, questionId) {
+            this.sendAction('addReports', type, questionId);
         }
     }
 });

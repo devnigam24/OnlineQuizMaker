@@ -22,8 +22,8 @@ export default Ember.Component.extend({
             this.sendAction('checkAnswer', evaluation);
         },
 
-        addReports(questionId) {
-            this.sendAction('addReports', questionId);
+        addReports(type, questionId) {
+            this.sendAction('addReports', type, questionId);
         }
     }
 });

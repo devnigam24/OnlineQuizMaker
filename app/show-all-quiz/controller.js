@@ -52,18 +52,18 @@ export default Ember.Controller.extend({
             this.transitionToRoute('dashboard');
         },
 
-        addReports(questionId) {
+        addReports(type, questionId) {
             var _this = this;
             let quizId = this.get('evaluatingQuizId');
             this.get('store').findRecord('quiz', quizId, {
-                backgroundReload: false
+                backgroundReload: true
             }).then((quiz) => {
                 var __this = _this;
                 let newReports = quiz.get('data.reports');
                 newReports.push(questionId);
                 quiz.set('data.reports', newReports);
                 quiz.save().then(() => {
-                    __this.postReport(quiz, questionId);
+                    __this.postReport(type, quiz, questionId);
                 });
             });
         }
@@ -85,18 +85,44 @@ export default Ember.Controller.extend({
         });
     },
 
-    postReport(quiz, questionId) {
+    postReport(type, quiz, questionId) {
+        const reportedFor = quiz.data.postedBy;
+        const topic = quiz.data.topic;
+        const quizId = quiz.id;
+        const question = questionId;
+        const reportedBy = this.get('userFullName');
+        const id = Utils.getRandomId();
+
+        let reports = [];
+
+        if (type === 'BAD_QUESTION') {
+            reports.push({
+                reportedBy,
+                comment: "Bad Question"
+            });
+        } else if (type === 'DUPLICATE_OPTIONS') {
+            reports.push({
+                reportedBy,
+                comment: "Duplicate Options"
+            });
+        } else {
+            reports.push({
+                reportedBy,
+                comment: "Duplicate Question"
+            });
+        }
+
         const report = {
-            reportedFor: quiz.data.postedBy,
-            topic: quiz.data.topic,
-            quizId: quiz.id,
-            question: questionId,
-            report: [{
-                reportedBy: this.get('userFullName'),
-                comment: "Incorrect options"
-            }]
+            reportedFor,
+            topic,
+            quizId,
+            question,
+            reports,
+            id
         };
-        this.get('store').createRecord('report', report).save();
+        this.get('store').createRecord('report', report, {
+            backgroundReload: false
+        }).save();
     },
 
     setThisQuizAsAttemped() {

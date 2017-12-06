@@ -36,27 +36,27 @@ export function getRandomId() {
 }
 
 export function getRandomArbitrary(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min) + min);
 }
 
 export function getRandomCity() {
-  const array = Internationalization.cities;
-  return array[this.getRandomArbitrary(0,array.length)];
+    const array = Internationalization.cities;
+    return array[this.getRandomArbitrary(0, array.length)];
 }
 
 export function getRandomPinCode() {
-  const array = Internationalization.pincodes;
-  return array[this.getRandomArbitrary(0,array.length)];
+    const array = Internationalization.pincodes;
+    return array[this.getRandomArbitrary(0, array.length)];
 }
 
 export function getRandomAddress() {
-  const array = Internationalization.streetAddress;
-  return array[this.getRandomArbitrary(0,array.length)];
+    const array = Internationalization.streetAddress;
+    return array[this.getRandomArbitrary(0, array.length)];
 }
 
 export function getRandomDesc() {
-  const array = Internationalization.description;
-  return array[this.getRandomArbitrary(0,array.length)];
+    const array = Internationalization.description;
+    return array[this.getRandomArbitrary(0, array.length)];
 }
 
 export function getTodatDate() {
@@ -75,4 +75,13 @@ export function getTodatDate() {
 
     today = mm + '/' + dd + '/' + yyyy;
     return today;
+}
+
+export function jumbleArray(arr) {
+    let retArray = [];
+    while (arr.length > 0) {
+        let randomNumber = Math.floor(Math.random() * (arr.length - 0) + 0);
+        retArray.push(arr.splice(randomNumber, 1)[0]);
+    }
+    return retArray;
 }

@@ -8,7 +8,7 @@
             </p>
         </div>
         <div class="collapsible-body comment-box teal lighten-3">
-            {{#each report.report as |comments|}}
+            {{#each report.reports as |comments|}}
                     <p class="report-topic"> <span class="comment">{{comments.comment}}</span> - {{comments.reportedBy}}</p>
                     <p class="report-question"></p>
             {{/each}}
