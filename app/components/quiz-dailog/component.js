@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Utils from '../../helpers/utils';
 
 export default Ember.Component.extend({
     isStudent: true,
@@ -8,9 +9,7 @@ export default Ember.Component.extend({
         this.$().ready(function() {
             $('.collapsible').collapsible();
         });
-        const quiz = this.get('model');
-        const questions = quiz.questions;
-        this.set('questions', questions);
+        this.set('randomizedQuizQuestions', this.randomQuestions(this.get('model.questions')));
     },
     actions: {
         submitQuiz() {
@@ -25,5 +24,9 @@ export default Ember.Component.extend({
         addReports(type, questionId) {
             this.sendAction('addReports', type, questionId);
         }
+    },
+
+    randomQuestions(questionsArray) {
+      return Utils.jumbleArray(questionsArray);
     }
 });

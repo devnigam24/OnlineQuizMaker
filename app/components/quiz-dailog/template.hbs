@@ -5,7 +5,7 @@
         <p>Should be given after {{model.fromDate}} and before {{model.toDate}}</p>
     </div>
     <div class="card-content">
-        {{#each model.questions as |question|}}
+        {{#each randomizedQuizQuestions as |question|}}
             {{
                 question-dialog quizId=model.id question=question
                 checkAnswer=(action "checkAnswer" value=answerGiven)

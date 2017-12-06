@@ -2,7 +2,7 @@
     <li>
         <div class="collapsible-header"><i class="material-icons">question_answer</i>{{question.question}}</div>
         <div class="collapsible-body row">
-            {{#each question.options as |option|}}
+            {{#each randomizedOptions as |option|}} 
                 <p>
                     {{options-dialog quizId=quizId name=question.id
                         option=option checkAnswer=(action "checkAnswer" value=answerGiven)

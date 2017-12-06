@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Utils from '../../helpers/utils';
 
 export default Ember.Component.extend({
     answerGiven: null,
@@ -6,6 +7,8 @@ export default Ember.Component.extend({
         $('.tooltipped').tooltip({
             delay: 50
         });
+
+        this.set('randomizedOptions', this.randomOptions(this.get('question.options')));
     },
     actions: {
         reportThisQuestionBad(question) {
@@ -28,5 +31,9 @@ export default Ember.Component.extend({
         addReports(type, questionId) {
             this.sendAction('addReports', type, questionId);
         }
+    },
+
+    randomOptions(questionsArray) {
+      return Utils.jumbleArray(questionsArray);
     }
 });
