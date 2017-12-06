@@ -16,7 +16,7 @@
                         Correct Answers: <span class="flow-text"> {{correctAnswers}} </span>
                     </div>
                     <div class="col s3">
-                        Final Result: <span class="flow-text"> {{percentages}} %</span> 
+                        Final Result: <span class="flow-text"> {{percentages}} %</span>
                     </div>
                 </div>
             </div>
@@ -27,10 +27,10 @@
                     <li>
                         {{#if oneResult.isCorrect}}
                             <div class="collapsible-header"><i class="material-icons icon-green">assignment_turned_in</i>{{oneResult.questionAnswered}}</div>
-                            <div class="collapsible-body answer-true"><span>{{oneResult.answer}}</span></div>
+                            <div class="collapsible-body"><span class="answer-true">{{oneResult.answer}}</span><i class="material-icons icon-green">check</i></div>
                         {{else}}
                             <div class="collapsible-header"><i class="material-icons icon-pink">assignment_late</i>{{oneResult.questionAnswered}}</div>
-                            <div class="collapsible-body answer-false"><span>{{oneResult.answer}}</span></div>
+                            <div class="collapsible-body"><span class="answer-false">{{oneResult.correctAnswer}}</span><i class="material-icons icon-green">clear</i> (<span class="answer-true">{{oneResult.answer}}</span><i class="material-icons icon-green">check</i>) </div>
                         {{/if}}
 
                     </li>

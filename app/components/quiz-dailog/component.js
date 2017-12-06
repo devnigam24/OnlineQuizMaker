@@ -9,7 +9,7 @@ export default Ember.Component.extend({
         this.$().ready(function() {
             $('.collapsible').collapsible();
         });
-        this.set('randomizedQuizQuestions', this.randomQuestions(this.get('model.questions')));
+        this.set('randomizedQuizQuestions', this.get('model.questions'));
     },
     actions: {
         submitQuiz() {

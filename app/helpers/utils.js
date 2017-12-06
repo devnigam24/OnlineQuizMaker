@@ -78,10 +78,11 @@ export function getTodatDate() {
 }
 
 export function jumbleArray(arr) {
+    let copyArray = arr;
     let retArray = [];
     while (arr.length > 0) {
         let randomNumber = Math.floor(Math.random() * (arr.length - 0) + 0);
-        retArray.push(arr.splice(randomNumber, 1)[0]);
+        retArray.push(copyArray.splice(randomNumber, 1)[0]);
     }
     return retArray;
 }

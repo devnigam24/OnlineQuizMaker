@@ -57,7 +57,7 @@ export default Ember.Component.extend({
 
         Ember.$('#time_limit').on('change', function() {
             Ember.$('label[for="time_limit"]').text('Minutes: ' + Ember.$('#time_limit').val());
-            _this.set('quizObject.timeLimit', Ember.$('#time_limit').val());
+            _this.set('quizObject.timeLimit', Number.parseInt(Ember.$('#time_limit').val()));
         });
 
         $('#from_date').on('change', function() {

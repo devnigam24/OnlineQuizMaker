@@ -29,15 +29,17 @@ export default Ember.Controller.extend({
                         const expectedAnswer = responseQuiz.data.questions.findBy('id', answersGiven.questionNumber);
                         if (expectedAnswer.answer === answersGiven.text) {
                             resultArray.push({
-                                'questionAnswered': expectedAnswer.question,
-                                'answer': expectedAnswer.answer,
-                                'isCorrect': true
+                                questionAnswered: expectedAnswer.question,
+                                answer: expectedAnswer.answer,
+                                correctAnswer: answersGiven.text,
+                                isCorrect: true
                             });
                         } else {
                             resultArray.push({
-                                'questionAnswered': expectedAnswer.question,
-                                'answer': expectedAnswer.answer,
-                                'isCorrect': false
+                                questionAnswered: expectedAnswer.question,
+                                answer: expectedAnswer.answer,
+                                correctAnswer: answersGiven.text,
+                                isCorrect: false
                             });
                         }
                     });
