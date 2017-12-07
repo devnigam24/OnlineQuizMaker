@@ -77,12 +77,22 @@ export function getTodatDate() {
     return today;
 }
 
-export function jumbleArray(arr) {
-    let copyArray = arr;
-    let retArray = [];
-    while (arr.length > 0) {
-        let randomNumber = Math.floor(Math.random() * (arr.length - 0) + 0);
-        retArray.push(copyArray.splice(randomNumber, 1)[0]);
+export function jumbleArray(array) {
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
-    return retArray;
+
+    return array;
 }
