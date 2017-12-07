@@ -8,7 +8,7 @@ export default Ember.Component.extend({
             delay: 50
         });
 
-        this.set('randomizedOptions', this.get('question.options'));
+        this.set('randomizedOptions', this.randomOptions(this.get('question.options')));
     },
     actions: {
         reportThisQuestionBad(question) {
